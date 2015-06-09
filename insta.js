@@ -3,20 +3,44 @@
 // 'https://api.instagram.com/v1/media/popular?access_token=youraccesstoken'
 // 'http://localhost/#access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb'
 
-$.ajax({
-	type: "GET",
-	dataType: "jsonp",
-	cache: false,
-	url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
-	success: function(data) {
-		// placing the images on the page
-		}
-	}
-});
 
-for (var i = 0; i < 6; i++) {
-	$(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url + "'></img></a></li>");
+
+var main = function(){
+	$.ajax({
+		type: "GET",
+		dataType: "jsonp",
+		cache: false,
+		url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
+		success: function(data) {
+			// placing the images on the page
+			for (var i = 0; i < 6; i++) {
+		      $(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
+		    }
+		}
+	})
+	$.ajax({
+		type: "GET",
+		dataType: "jsonp",
+		cache: false,
+		url: "https://api.instagram.com/v1/users/6962099/follows?access_token=[6962099.41a6e79.db75930f284e44c9bd967ae15251bedb]",
+		success: function(data) {
+			$(".cole").append($('<li>').html(data));
+			// for (var i = 0; i < 6; i++) {
+		 //      $(".cole").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
+		 //    }
+		}
+	})
+	$("button").click(function(){
+		$("ul").prepend("<li>Jello!</li>");
+	});
 };
+
+
+
+
+$(document).ready(main);
+
+
 
 
 // // HTTP Codes:

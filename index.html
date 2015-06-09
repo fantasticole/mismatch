@@ -5,9 +5,23 @@
 	</head>
 	<body>
 		<h1>Insta Fun</h1>
-		<a href="https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://localhost&response_type=token">Authenticate!</a>
-		<ul class='popular'>
-		</ul>
+		<div id='content'>
+			<a class='auth' href="https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://localhost&response_type=token">Authenticate!</a>
+			<br>
+			<br>
+			<button>Wha?</button>
+			<br>
+			<div class='list'>
+				<p>Popular:</p>
+				<ul class='popular'></ul>
+			</div>
+			<br>
+			<div class='list'>
+				<p>Cole:</p>
+				<ul class='cole'></ul>
+			</div>
+		</div>
+		<script src='jQuery.js'></script>
 		<script src='insta.js'></script>
 	</body>
 </html>

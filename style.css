@@ -1,28 +1,82 @@
+/*00fcdb - Teal*/
+/*2b99f4 - Turquoise*/
+/*20274f - Navy*/
+/*e97ca1 - Pink*/
+/*cda4f7 - Purple*/
+
 html{
-	background-color: #CDA4F7;
-	margin: 40px 0 0 60px;
-	/*margin-top: 40px;*/
+	background-color: #2B99F4;
 	font-family: courier;
 }
 
 h1{
+	margin: 40px 0 40px 60px;
 	color: #00FCDB;
 }
 
-p{
-	color: #00FCDB;
+div{
+	text-align: center;
+	width: 80%;
+	border-radius: 0 30px;
+	position: relative;
+	margin: auto;
 }
 
-a{
-	color: #000000;
+#content{
+	text-align: center;
+	background-color: #CDA4F7;
+	height: 80%;
+	width: 80%;
+	border-radius: 0 30px;
+	position: relative;
+	margin: auto;
+	padding: 20px;
+}
+
+.auth{
+	color: #20274F;
 	text-transform: uppercase;
 	text-decoration: none;
 	padding: 10px;
+	margin: 10px;
 }
 
-a:hover{
+.auth:hover{
 	color: #E97CA1;
 	box-shadow: 0 0 20px #FFFFFF;
 	background-color: #FFFFFF;
 	border-radius: 10px;
 }
+
+button{
+	font-family: courier;
+	font-size: 15px;
+	border-radius: 0 8px;
+	background-color: #FFFFFF;
+}
+
+.list{
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+p{
+	color: #00FCDB;
+	padding: 10px;
+}
+
+ul{
+	display: inline-block;
+	list-style-type: none;
+	overflow: hidden;
+}
+
+li{
+	color: #20274F;
+	padding: 10px;
+	float: center;
+}
+
+
+
+
