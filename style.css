@@ -1,0 +1,28 @@
+html{
+	background-color: #CDA4F7;
+	margin: 40px 0 0 60px;
+	/*margin-top: 40px;*/
+	font-family: courier;
+}
+
+h1{
+	color: #00FCDB;
+}
+
+p{
+	color: #00FCDB;
+}
+
+a{
+	color: #000000;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px;
+}
+
+a:hover{
+	color: #E97CA1;
+	box-shadow: 0 0 20px #FFFFFF;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+}
