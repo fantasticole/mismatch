@@ -53,26 +53,27 @@ button{
 	font-size: 15px;
 	border-radius: 0 8px;
 	background-color: #FFFFFF;
+	margin: 20px;
 }
 
-.cole div{
+.cole div, .followers div{
 	display: inline-block;
 }
 
-.cole img{
-	height: 75px;
-	width: 75px;
+.cole img, .followers img{
+	height: 100px;
+	width: 100px;
 	display: inline-block;
 	padding: 10px;
 }
 
-.cole a{
+.cole a, .followers a{
 	padding: 20px;
 	text-decoration: none;
 	color: #000000;
 }
 
-.cole a:hover{
+.cole a:hover, .followers a:hover{
 	text-decoration: none;
 	color: #e97ca1; 
 }
@@ -80,11 +81,12 @@ button{
 .list{
 	text-align: center;
 	background-color: #FFFFFF;
+	padding: 20px;
 }
 
 p{
 	color: #00FCDB;
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 ul{

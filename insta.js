@@ -35,6 +35,21 @@ var main = function(){
 		type: "GET",
 		dataType: "jsonp",
 		cache: false,
+		url: "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
+		success: function(data) {
+			var list = data.data;
+			for (var x = 0; x < list.length; x++){
+				var pic = list[x].profile_picture;
+				var user = list[x].username;
+				$('.followers').append($('<div>').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
+			}
+			console.log(data);
+		}
+	})
+	$.ajax({
+		type: "GET",
+		dataType: "jsonp",
+		cache: false,
 		url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
 		success: function(data) {
 			// placing the images on the page
