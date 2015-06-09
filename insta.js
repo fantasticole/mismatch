@@ -10,24 +10,37 @@ var main = function(){
 		type: "GET",
 		dataType: "jsonp",
 		cache: false,
-		url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
+		url: "https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
 		success: function(data) {
-			// placing the images on the page
-			for (var i = 0; i < 6; i++) {
-		      $(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
-		    }
+			var list = data.data;
+			for (var x = 0; x < list.length; x++){
+				var pic = list[x].profile_picture;
+				var user = list[x].username;
+				// $('.cole').append($('<img src=' + list[x].profile_picture + '>'));
+				$('.cole').append($('<div>').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
+			}
+			// var info = data.toString();
+			// $(".cole").append($('<li>').html(info));
+			// $(".cole").append($('<li>').html('Hey there!'));
+			console.log(data);
+			// console.log(data.data[0].profile_picture);
+			// console.log(data.data[0].id);
+			// console.log(data.data[0].username);
+			// for (var i = 0; i < 6; i++) {
+		 //      $(".cole").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
+		 //    }
 		}
 	})
 	$.ajax({
 		type: "GET",
 		dataType: "jsonp",
 		cache: false,
-		url: "https://api.instagram.com/v1/users/6962099/follows?access_token=[6962099.41a6e79.db75930f284e44c9bd967ae15251bedb]",
+		url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
 		success: function(data) {
-			$(".cole").append($('<li>').html(data));
-			// for (var i = 0; i < 6; i++) {
-		 //      $(".cole").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
-		 //    }
+			// placing the images on the page
+			for (var i = 0; i < 1; i++) {
+		      $(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
+		    }
 		}
 	})
 	$("button").click(function(){
