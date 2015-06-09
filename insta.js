@@ -58,9 +58,9 @@ var main = function(){
 		    }
 		}
 	})
-	$("button").click(function(){
-		$("ul").prepend("<li>Jello!</li>");
-	});
+	// $("button").click(function(){
+	// 	$("ul").prepend("<li>Jello!</li>");
+	// });
 };
 
 

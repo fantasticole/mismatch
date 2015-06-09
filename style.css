@@ -48,14 +48,6 @@ h1{
 	border-radius: 10px;
 }
 
-button{
-	font-family: courier;
-	font-size: 15px;
-	border-radius: 0 8px;
-	background-color: #FFFFFF;
-	margin: 20px;
-}
-
 .cole div, .followers div{
 	display: inline-block;
 }
