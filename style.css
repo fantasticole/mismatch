@@ -160,13 +160,8 @@ li{
 	color: #cda4f7;
 }
 
-.notFollowing a{
+.category{
+	font-size: 0.8em;
 	color: #000000;
 }
-
-.notFollowed a{
-	color: #e97ca1;
-}
-
-
 

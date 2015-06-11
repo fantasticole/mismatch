@@ -93,6 +93,7 @@ var main = function(){
 				notFollowed.push(oneArr[x]);
 			}
 		}
+		$('.info').append('<p class="category">Not Following You:</p>');
 		for (var i = 0; i < notFollowed.length; i++){
 			// $('.info').append($('<p class="notFollowed">').html(notFollowed[i]));
 			$('.info').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
@@ -104,6 +105,7 @@ var main = function(){
 			}
 		}
 		// console.log('Not following: ', notFollowing);
+		$('.info').append('<p class="category">You Don\'t Follow:</p>');
 		for (var i = 0; i < notFollowing.length; i++){
 			// $('.info').append($('<p class="notFollowing">').html(notFollowing[i]));
 			$('.info').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
