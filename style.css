@@ -40,12 +40,16 @@ h1{
 	height: 20px;
 	width: 150px;
 	text-align: center;
-	vertical-align: center;
+	/*vertical-align: center;*/
+	position: relative;
+	left: 3%;
+	top: 15px;
 }
 
 .auth:hover{
 	box-shadow: 5px 5px #FFFFFF;
 	background-color: #000000;
+	margin-left: 50px;
 }
 
 .auth a{
@@ -63,14 +67,13 @@ h1{
 	height: 1200px;
 }
 
-.info{
+.users{
 	flex: 1;
 	border-radius: 0 30px;
 	position: relative;
 	left: 3%;
 	/*margin-bottom: 18px;*/
 	height: 95%;
-	overflow: auto;
 }
 
 .photos{
@@ -79,10 +82,15 @@ h1{
 	/*left: 3%;*/
 }
 
-.list, .info{
+.list, .users{
 	text-align: center;
 	background-color: rgba(250, 250, 250, 0.8);
 	padding: 20px;
+}
+
+.info{
+	overflow: auto;
+	height: 90%;
 }
 
 .cole, .followers{
@@ -143,14 +151,21 @@ li{
 	float: center;
 }
 
-.notFollowing{
-	color: #000000;
+.info a{
 	font-size: 0.7em;
+	text-decoration: none;
 }
 
-.notFollowed{
+.info a:hover{
+	color: #cda4f7;
+}
+
+.notFollowing a{
+	color: #000000;
+}
+
+.notFollowed a{
 	color: #e97ca1;
-	font-size: 0.7em;
 }
 
 
