@@ -6,7 +6,7 @@
 
 
 var main = function(){
-	var follows = [];
+	var empty = [];
 
 	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
@@ -40,6 +40,106 @@ var main = function(){
 		});
 	};
 
+	// a function that takes two links
+	// the first part runs over the data until it gets a full array of usernames
+	// the second part takes that array as a parameter as well as the second link
+	// the second part runs over the second link until it gets a full list
+	// at that point it compares the two arrays and returns two new arrays
+	// one array is a list of the people you follow who don't follow you back
+	// the other array is a list of people who follow you that you don't follow back
+
+
+	function usernames(loc, locTwo, arr){
+		people(loc).done(function(data){
+			var users = arr.concat(data.data);
+			if (data.pagination.next_url){
+				var newLoc = data.pagination.next_url;
+				usernames(newLoc, locTwo, users)
+			}
+			else {
+				var names = users.map(function(they){
+					return they.username;
+				});
+				// console.log('first: ', names);
+				bridge(locTwo, names, empty)
+			};
+		});
+	};
+
+	function bridge(loc, following, arr){
+		people(loc).done(function(data){
+			var users = arr.concat(data.data);
+			if (data.pagination.next_url){
+				var newLoc = data.pagination.next_url;
+				bridge(newLoc, following, users)
+			}
+			else {
+				var followers = users.map(function(they){
+					return they.username;
+				});
+				// console.log('second: ', followers);
+				compare(following, followers);
+			};
+		});
+	};
+
+	function compare(oneArr, twoArr){
+		console.log('following: ', oneArr);
+		console.log('followers: ', twoArr);
+		var notFollowing = [];
+		var notFollowed = [];
+		for (var x = 0; x < oneArr.length; x++){
+			if (twoArr.indexOf(oneArr[x]) === -1){
+				notFollowed.push(oneArr[x]);
+			}
+		}
+		for (var i = 0; i < notFollowed.length; i++){
+			$('.info').append($('<p class="notFollowed">').html(notFollowed[i]));
+		}
+		console.log('Not followed by: ', notFollowed);
+		for (var x = 0; x < twoArr.length; x++){
+			if (oneArr.indexOf(twoArr[x]) === -1){
+				notFollowing.push(twoArr[x]);
+			}
+		}
+		console.log('Not following: ', notFollowing);
+		for (var i = 0; i < notFollowing.length; i++){
+			$('.info').append($('<p class="notFollowing">').html(notFollowing[i]));
+		}
+	};
+
+	usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
+
+
+
+
+	// function compare(you, them){
+	// 	// var one = usernames(you, empty);
+	// 	// console.log('one: ', one);
+	// 	// var two = usernames(them, empty);
+	// 	// console.log('two: ', two);
+	// 	usernames(you, yourFollowers);
+	// 	console.log('one: ', yourFollowers);
+	// 	usernames(them, followYou);
+	// 	console.log('two: ', followYou);
+	// 	console.log('total: ', total);
+	// 	// people(you).done(function(data){
+	// 	// 	var users = empty.concat(data.data);
+	// 	// 	while (data.pagination.next_url){
+	// 	// 		var newLoc = data.pagination.next_url;
+	// 	// 		// usernames(newLoc, users)
+	// 	// 	}
+	// 	// 	else {
+	// 	// 		var names = users.map(function(they){
+	// 	// 			return they.username;
+	// 	// 		});
+	// 	// 		// console.log(names);
+	// 	// 		return names;
+	// 	// 	};
+	// 	// })
+	// 	// console.log('test: ', names)
+	// }
+
 	function photos(loc, num, div){
 		people(loc).done(function(data){
 			for (var i = 0; i < num; i++) {
@@ -48,9 +148,10 @@ var main = function(){
 		});
 	};
 
-	makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", follows, '.cole');
 
-	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", follows, '.followers');
+	makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.cole');
+
+	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
 
 	// photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
 };
