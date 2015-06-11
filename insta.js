@@ -13,7 +13,7 @@ var main = function(){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
 			// $('.cole').append($('<img src=' + list[x].profile_picture + '>'));
-			$(div).append($('<div>').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
+			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
 		}
 	};
 
@@ -29,17 +29,22 @@ var main = function(){
 	function makeArr(loc, arr, div){
 		people(loc).done(function(data){
 			list = arr.concat(data.data);
-			// console.log('list: ', list);
 			if (data.pagination.next_url){
 				var newLoc = data.pagination.next_url;
 				makeArr(newLoc, list, div)
 			}
 			else {
 				var final = list;
-				console.log('div, ', div);
 				display(final, div);
-				// return final;
 			};
+		});
+	};
+
+	function photos(loc, num, div){
+		people(loc).done(function(data){
+			for (var i = 0; i < num; i++) {
+		      $(div).append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
+		    }
 		});
 	};
 
@@ -47,21 +52,7 @@ var main = function(){
 
 	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", follows, '.followers');
 
-	$.ajax({
-		type: "GET",
-		dataType: "jsonp",
-		cache: false,
-		url: "https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb",
-		success: function(data) {
-			// placing the images on the page
-			for (var i = 0; i < 10; i++) {
-		      $(".popular").append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
-		    }
-		}
-	})
-	// $("button").click(function(){
-	// 	$("ul").prepend("<li>Jello!</li>");
-	// });
+	photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
 };
 
 
