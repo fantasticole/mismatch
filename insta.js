@@ -52,7 +52,7 @@ var main = function(){
 
 	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", follows, '.followers');
 
-	photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
+	// photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
 };
 
 
