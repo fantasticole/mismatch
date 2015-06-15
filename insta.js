@@ -35,7 +35,7 @@ var main = function(){
 
 	$('.token').click(function(){
 		var here = window.location.href
-		var toke = here.slice(here.indexOf('access_token=')+12);
+		var toke = here.slice(here.indexOf('access_token=')+13);
 		console.log(toke);
 	});
 
