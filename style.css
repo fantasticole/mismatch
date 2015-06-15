@@ -61,7 +61,7 @@ input:focus{
 	box-shadow: 5px 5px #00fcdb;
 }
 
-.auth{
+button{
 	/*flex: 1;*/
 	background-color: #FFFFFF;
 	box-shadow: 5px 5px #000000;
@@ -76,13 +76,13 @@ input:focus{
 	font-size: 90%;
 }
 
-.auth:hover{
+button:hover{
 	box-shadow: 5px 5px #FFFFFF;
 	background-color: #000000;
 	color: #00FCDB;
 }
 
-.auth:focus{
+button:focus{
 	outline-style: none;
 }
 

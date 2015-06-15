@@ -10,9 +10,33 @@ var main = function(){
 
 	$('.auth').click(function(){
 		var handle = $('input[name=handle]').val();
-		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
+		window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
+		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=code", '_blank');
 		console.log('HANDLE: ', handle);
 		console.log(window.location.href);
+	});
+
+	// $('.test').click(function(){
+	// 	$.ajax({
+	// 		type: "POST",
+	// 		dataType: "jsonp",
+	// 		cache: false,
+	// 		client_id: '41a6e79d271549738e3294ad7c272bcd',
+	// 		client_secret: '9adf2b3052464362ba391961cf002199',
+	// 		grant_type: 'authorization_code',
+	// 		redirect_uri: 'http://fantasticole.github.io/insta/',
+	// 		code: '424c9a40ce59447b99d0f8b07c76ab90',
+	// 		url: 'https://api.instagram.com/oauth/access_token',
+	// 		success: function(data){
+	// 			console.log('success: ', data);
+	// 		}
+	// 	})
+	// });
+
+	$('.token').click(function(){
+		var here = window.location.href
+		var toke = here.slice(here.indexOf('access_token=')+12);
+		console.log(toke);
 	});
 
 
