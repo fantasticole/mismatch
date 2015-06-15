@@ -10,7 +10,9 @@ var main = function(){
 
 	$('.auth').click(function(){
 		var handle = $('input[name=handle]').val();
+		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
 		console.log('HANDLE: ', handle);
+		console.log(window.location.href);
 	});
 
 
