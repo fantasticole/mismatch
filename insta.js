@@ -9,7 +9,7 @@ var main = function(){
 	var empty = [];
 
 	$('.auth').click(function(){
-		var handle = $('textarea[name=handle]').val();
+		var handle = $('input[name=handle]').val();
 		console.log('HANDLE: ', handle);
 	});
 
