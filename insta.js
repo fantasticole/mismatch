@@ -7,37 +7,37 @@
 
 var main = function(){
 	var empty = [];
+	var clicked = 0;
 	$('.visitor').hide();
+	$('.container').hide();
+	var token = '6962099.41a6e79.db75930f284e44c9bd967ae15251bedb';
 
-	$('.auth').click(function(){
-		var handle = $('input[name=handle]').val();
-		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
-		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=code", '_blank');
-		console.log('HANDLE: ', handle);
-		console.log(window.location.href);
-	});
+	// $('.auth').click(function(){
+	// 	var handle = $('input[name=handle]').val();
+	// 	// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
+	// 	// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=code", '_blank');
+	// 	console.log('HANDLE: ', handle);
+	// 	console.log(window.location.href);
+	// });
 
 	$('.search').click(function(){
 		var handle = $('input[name=handle]').val();
-		if (handle.length > 0){
-			people('https://api.instagram.com/v1/users/search?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb&q=' + handle + '&count=1').done(function(data){
-				var result = data.data;
-				// if (result)
-				// console.log('user: ', result[0]);
-				// {username: "colemurphy",
-				// profile_picture: "https://instagramimages-a.akamaihd.net/profiles/profile_6962099_75sq_1354996876.jpg",
-				// id: "6962099",
-				// full_name: "Cole Murphy"}
-				var pic = result[0].profile_picture;
-				var name = result[0].full_name;
-				var user = result[0].username;
-				// console.log('info: ', pic, name, user);
+		if (clicked === 0){
+			clicked = 1;
+			if (handle.length > 0){
+				searchUser(handle);
+			}
+			else{
 				$('.visitor').show();
-				$('.visitor').append('<br><br><img src=' + pic + '><br><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a>');
-			})
+				$('.visitor').html('<h2>Please type a username.</h2>');
+			}
 		}
-		else{
-			console.log('Please type a username.');
+		else {
+			$('.visitor').html('');
+			$('.info').html('');
+			$('.following').html('');
+			$('.followers').html('');
+			searchUser(handle);
 		}
 	});
 
@@ -47,12 +47,42 @@ var main = function(){
 	// 	console.log(toke);
 	// });
 
+	function searchUser(name){
+		people('https://api.instagram.com/v1/users/search?access_token=' + token + '&q=' + name + '&count=1').done(function(data){
+					var result = data.data;
+					if (result[0]){
+						// console.log('user: ', result[0]);
+						var pic = result[0].profile_picture;
+						var name = result[0].full_name;
+						var user = result[0].username;
+						var ident = result[0].id;
+						$('.visitor').show();
+						$('.visitor').append('<br><br><img src=' + pic + '><br><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a>');
+						$('.container').show();
+						$('.userFollows').html(user + ' Follows:');
+						$('.userFollowing').html(user + '\'s Followers:');
+						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
+
+						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+
+						usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
+					}
+					else{
+						console.log('That user does not seem to exist.');
+					}
+					// {username: "colemurphy",
+					// profile_picture: "https://instagramimages-a.akamaihd.net/profiles/profile_6962099_75sq_1354996876.jpg",
+					// id: "6962099",
+					// full_name: "Cole Murphy"}
+					// console.log('info: ', pic, name, user);
+				})
+	};
+
 
 	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
-			// $('.following').append($('<img src=' + list[x].profile_picture + '>'));
 			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
 		}
 	};
@@ -79,15 +109,6 @@ var main = function(){
 			};
 		});
 	};
-
-	// a function that takes two links
-	// the first part runs over the data until it gets a full array of usernames
-	// the second part takes that array as a parameter as well as the second link
-	// the second part runs over the second link until it gets a full list
-	// at that point it compares the two arrays and returns two new arrays
-	// one array is a list of the people you follow who don't follow you back
-	// the other array is a list of people who follow you that you don't follow back
-
 
 	function usernames(loc, locTwo, arr){
 		people(loc).done(function(data){
@@ -133,9 +154,8 @@ var main = function(){
 				notFollowed.push(oneArr[x]);
 			}
 		}
-		$('.info').append('<p class="category">Not Following You:</p>');
+		$('.info').append('<p class="category">Not Followed By:</p>');
 		for (var i = 0; i < notFollowed.length; i++){
-			// $('.info').append($('<p class="notFollowed">').html(notFollowed[i]));
 			$('.info').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
 		}
 		// console.log('Not followed by: ', notFollowed);
@@ -145,25 +165,21 @@ var main = function(){
 			}
 		}
 		// console.log('Not following: ', notFollowing);
-		$('.info').append('<p class="category">You Don\'t Follow:</p>');
+		$('.info').append('<p class="category">Not Following:</p>');
 		for (var i = 0; i < notFollowing.length; i++){
-			// $('.info').append($('<p class="notFollowing">').html(notFollowing[i]));
 			$('.info').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
 		}
 	};
-
-
-	makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.following');
-
-	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
-
-	usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
 };
 
 
 
 
 $(document).ready(main);
+
+
+
+
 
 
 
