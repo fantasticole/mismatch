@@ -8,11 +8,17 @@
 var main = function(){
 	var empty = [];
 
+	$('.auth').click(function(){
+		var handle = $('textarea[name=handle]').val();
+		console.log('HANDLE: ', handle);
+	});
+
+
 	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
-			// $('.cole').append($('<img src=' + list[x].profile_picture + '>'));
+			// $('.following').append($('<img src=' + list[x].profile_picture + '>'));
 			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
 		}
 	};
@@ -121,11 +127,11 @@ var main = function(){
 	};
 
 
-	makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.cole');
+	// makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.following');
 
-	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
+	// makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
 
-	usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
+	// usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
 
 	// photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
 };

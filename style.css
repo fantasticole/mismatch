@@ -12,6 +12,7 @@ html{
 h1{
 	margin: 40px 0 40px 60px;
 	color: #00FCDB;
+	font-size: 2em;
 }
 
 #content, .list{
@@ -26,38 +27,54 @@ h1{
 	text-align: center;
 	background-color: #CDA4F7;
 	height: 80%;
-	width: 80%;
+	/*width: 80%;*/
 	border-radius: 0 30px;
 	position: relative;
 	margin: auto;
 	padding: 20px;
 }
 
-.auth{
-	background-color: #FFFFFF;
-	box-shadow: 5px 5px #000000;
-	border-radius: 0 5px;
-	height: 20px;
-	width: 150px;
-	text-align: center;
-	/*vertical-align: center;*/
+.input{
+	display: flex;
+	flex-direction: row;
 	position: relative;
 	left: 3%;
-	top: 15px;
+	height: 20px;
+	width: 90%;
+	/*background-color: #000000;*/
+}
+
+/*form{
+	flex: 1;
+}*/
+
+textarea{
+	/*flex: 1;*/
+	border-radius: 0 10px;
+	height: 100%;
+	width: 200px;
+	box-shadow: 5px 5px #000000;
+	text-align: center;
+}
+
+.auth{
+	/*flex: 1;*/
+	background-color: #FFFFFF;
+	box-shadow: 5px 5px #000000;
+	border: 1px solid black;
+	border-radius: 0 10px;
+	height: 25px;
+	width: 150px;
+	text-align: center;
+	margin-left: 15px;
+	color: #20274F;
+	font-family: courier;
+	font-size: 90%;
 }
 
 .auth:hover{
 	box-shadow: 5px 5px #FFFFFF;
 	background-color: #000000;
-	margin-left: 50px;
-}
-
-.auth a{
-	color: #20274F;
-	text-decoration: none;
-}
-
-.auth:hover a{
 	color: #00FCDB;
 }
 
@@ -66,6 +83,11 @@ h1{
 	flex-direction: row;
 	height: 1200px;
 }
+
+/*h2{
+	margin: 40px 0 40px 60px;
+	color: #00FCDB;
+}*/
 
 .users{
 	flex: 1;
@@ -79,6 +101,7 @@ h1{
 .photos{
 	flex: 4;
 	position: relative;
+	right: 0;
 	/*left: 3%;*/
 }
 
@@ -89,14 +112,14 @@ h1{
 }
 
 .info{
-	overflow: auto;
+	overflow-y: auto;
 	height: 90%;
 }
 
-.cole, .followers{
+.following, .followers{
 	height: 460px;
 	border-radius: 0 0 0 30px;
-	overflow: auto;
+	overflow-y: auto;
 	/*border: 1px solid black;*/
 }
 
@@ -105,6 +128,7 @@ h1{
 	display: flex;
 	flex-direction: row;
 	height: 100px;
+	overflow: auto;
 }
 
 .person:hover{
@@ -126,7 +150,7 @@ h1{
 	text-decoration: none;
 	color: #000000;
 	margin: auto;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .person:hover a{
