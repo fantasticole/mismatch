@@ -87,25 +87,37 @@ h2{
 	.visitor{
 		border-radius: 0 30px;
 		background-color: rgba(250, 250, 250, 0.8);
-		width: 94%;
+		width: 80%;
 		height: 150px;
 		position: relative;
-		left: 3%;
+		margin: auto;
+		text-align: center;
 	}
 
-	.visitor img{
-		float: left;
-		height: 95%;
-		position: absolute;
-		top: 0;
-		left: 3em;
-		border: 2px solid black;
+	.overlay{
+		border-radius: 0 30px;
+		background-color: rgba(250, 250, 250, 0.5);
+		width: 100%;
+		height: 100%;
 	}
 
-	.visitor p, .visitor a{
-		float: right;
+	.visitor p{
+		font-size: 3em;
+		color: #FFF;
+		padding-top: 15px;
 	}
 
+	.visitor a{
+		font-size: 2em;
+		text-decoration: none;
+		color: #000000;
+		position: relative;
+		bottom: 50px;
+	}
+
+	.visitor a:hover{
+		color: #00fcdb;
+	}
 
 
 

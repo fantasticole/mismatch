@@ -26,6 +26,8 @@ var main = function(){
 			clicked = 1;
 			if (handle.length > 0){
 				searchUser(handle);
+				// Seems to search for users with similar names in your followers/following, rather than a use with that exact username.
+				// 'pier' returned pierlikeadock rathen than user 'pier.'
 			}
 			else{
 				$('.visitor').show();
@@ -57,7 +59,8 @@ var main = function(){
 						var user = result[0].username;
 						var ident = result[0].id;
 						$('.visitor').show();
-						$('.visitor').append('<br><br><img src=' + pic + '><br><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a>');
+						$('.visitor').css('background-image', 'url(' + pic + ')');
+						$('.visitor').append('<div class="overlay"><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
 						$('.container').show();
 						$('.userFollows').html(user + ' Follows:');
 						$('.userFollowing').html(user + '\'s Followers:');
