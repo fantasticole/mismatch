@@ -31,7 +31,8 @@ var main = function(){
 			}
 			else{
 				$('.visitor').show();
-				$('.visitor').html('<h2>Please type a username.</h2>');
+				$('.container').hide();
+				$('.visitor').html('<p class="notReal">Please type a username.</p>');
 			}
 		}
 		else {
@@ -39,7 +40,15 @@ var main = function(){
 			$('.info').html('');
 			$('.following').html('');
 			$('.followers').html('');
-			searchUser(handle);
+			$('.container').hide();
+			$('.visitor').css('background-image', 'none');
+			if (handle.length > 0){
+				searchUser(handle);
+			}
+			else{
+				$('.visitor').show();
+				$('.visitor').html('<p class="notReal">Please type a username.</p>');
+			}
 		}
 	});
 
@@ -60,18 +69,20 @@ var main = function(){
 						var ident = result[0].id;
 						$('.visitor').show();
 						$('.visitor').css('background-image', 'url(' + pic + ')');
-						$('.visitor').append('<div class="overlay"><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
+						$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
 						$('.container').show();
 						$('.userFollows').html(user + ' Follows:');
 						$('.userFollowing').html(user + '\'s Followers:');
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
+						// makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+						// makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
-						usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
+						// usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
 					}
 					else{
-						console.log('That user does not seem to exist.');
+						$('.container').hide();
+						$('.visitor').css('background-image', 'none');
+						$('.visitor').html('<p class="notReal">That user does not seem to exist.</p>');
 					}
 					// {username: "colemurphy",
 					// profile_picture: "https://instagramimages-a.akamaihd.net/profiles/profile_6962099_75sq_1354996876.jpg",
