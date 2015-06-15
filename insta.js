@@ -12,14 +12,7 @@ var main = function(){
 	$('.container').hide();
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
-	// var token = '6962099.41a6e79.db75930f284e44c9bd967ae15251bedb';
 
-	// $('.auth').click(function(){
-	// 	// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
-	// 	// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=code", '_blank');
-	// 	console.log('HANDLE: ', handle);
-	// 	console.log(window.location.href);
-	// });
 
 	$('.search').click(function(){
 		var handle = $('input[name=handle]').val();
@@ -68,11 +61,11 @@ var main = function(){
 						$('.container').show();
 						$('.userFollows').html(user + ' Follows:');
 						$('.userFollowing').html(user + '\'s Followers:');
-						// makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
+						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
-						// makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
-						// usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
+						usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
 					}
 					else{
 						$('.container').hide();

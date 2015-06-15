@@ -33,6 +33,22 @@ h2{
 	padding: 20px;
 }
 
+	.auth{
+		height: 300px;
+	}
+
+	.auth a{
+		font-size: 4em;
+		text-decoration: none;
+		position: relative;
+		top: 30px;
+		color: #FFFFFF;
+	}
+
+	.auth a:hover{
+		color: #000000;
+	}
+
 	.input{
 		display: flex;
 		flex-direction: row;
