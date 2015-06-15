@@ -7,37 +7,45 @@
 
 var main = function(){
 	var empty = [];
+	$('.visitor').hide();
 
 	$('.auth').click(function(){
 		var handle = $('input[name=handle]').val();
-		window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
+		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=token", '_blank');
 		// window.open("https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/&response_type=code", '_blank');
 		console.log('HANDLE: ', handle);
 		console.log(window.location.href);
 	});
 
-	// $('.test').click(function(){
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		dataType: "jsonp",
-	// 		cache: false,
-	// 		client_id: '41a6e79d271549738e3294ad7c272bcd',
-	// 		client_secret: '9adf2b3052464362ba391961cf002199',
-	// 		grant_type: 'authorization_code',
-	// 		redirect_uri: 'http://fantasticole.github.io/insta/',
-	// 		code: '424c9a40ce59447b99d0f8b07c76ab90',
-	// 		url: 'https://api.instagram.com/oauth/access_token',
-	// 		success: function(data){
-	// 			console.log('success: ', data);
-	// 		}
-	// 	})
-	// });
-
-	$('.token').click(function(){
-		var here = window.location.href
-		var toke = here.slice(here.indexOf('access_token=')+13);
-		console.log(toke);
+	$('.search').click(function(){
+		var handle = $('input[name=handle]').val();
+		if (handle.length > 0){
+			people('https://api.instagram.com/v1/users/search?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb&q=' + handle + '&count=1').done(function(data){
+				var result = data.data;
+				// if (result)
+				// console.log('user: ', result[0]);
+				// {username: "colemurphy",
+				// profile_picture: "https://instagramimages-a.akamaihd.net/profiles/profile_6962099_75sq_1354996876.jpg",
+				// id: "6962099",
+				// full_name: "Cole Murphy"}
+				var pic = result[0].profile_picture;
+				var name = result[0].full_name;
+				var user = result[0].username;
+				// console.log('info: ', pic, name, user);
+				$('.visitor').show();
+				$('.visitor').append('<br><br><img src=' + pic + '><br><p>' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a>');
+			})
+		}
+		else{
+			console.log('Please type a username.');
+		}
 	});
+
+	// $('.token').click(function(){
+	// 	var here = window.location.href;
+	// 	var toke = here.slice(here.indexOf('access_token=')+13);
+	// 	console.log(toke);
+	// });
 
 
 	function display(arr, div){
@@ -144,22 +152,12 @@ var main = function(){
 		}
 	};
 
-	function photos(loc, num, div){
-		people(loc).done(function(data){
-			for (var i = 0; i < num; i++) {
-		      $(div).append("<li><a target='_blank' href='" + data.data[i].link + "'><img src='" + data.data[i].images.low_resolution.url +"'></img></a></li>");
-		    }
-		});
-	};
 
+	makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.following');
 
-	// makeArr("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.following');
+	makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
 
-	// makeArr("https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty, '.followers');
-
-	// usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
-
-	// photos("https://api.instagram.com/v1/media/popular?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", 10, '.popular');
+	usernames("https://api.instagram.com/v1/users/6962099/follows?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", "https://api.instagram.com/v1/users/6962099/followed-by?access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb", empty)
 };
 
 
