@@ -13,6 +13,7 @@ h1{
 	margin: 40px 0 40px 60px;
 	color: #00FCDB;
 	font-size: 2em;
+	z-index: 10;
 }
 
 h2{
@@ -54,23 +55,22 @@ h2{
 		display: flex;
 		flex-direction: row;
 		position: relative;
-		left: 3%;
+		margin: auto;
 		height: 25px;
-		width: 90%;
+		width: 75%;
+		max-width: 500px;
 		text-align: center;
 	}
 
 		input{
+			flex: 2;
 			border: 1px solid black;
 			border-radius: 0 10px;
 			height: 85%;
-			width: 300px;
 			box-shadow: 5px 5px #000000;
 			text-align: center;
 			font-family: courier;
 			font-size: 90%;
-			position: relative;
-			left: 20%;
 		}
 
 		input:focus{
@@ -79,14 +79,14 @@ h2{
 		}
 
 		button{
+			flex: 1;
 			background-color: #000000;
 			box-shadow: 5px 5px #FFFFFF;
 			border: 1px solid black;
 			border-radius: 0 10px;
 			height: 100%;
-			width: 150px;
 			text-align: center;
-			margin-left: 25%;
+			margin-left: 10px;
 			color: #00FCDB;
 			font-family: courier;
 			font-size: 90%;
@@ -231,6 +231,7 @@ h2{
 
 					.person img{
 						height: 100%;
+						width: 100px;
 						display: inline-block;
 					}
 
@@ -250,5 +251,88 @@ h2{
 						text-decoration: none;
 						color: #00FCDB;
 					}
+
+@media (max-width: 800px){
+	html{
+		background-color: #CDA4F7;
+	}
+
+	h1{
+		position: absolute;
+		top: 0;
+		margin: 15px;
+	}
+
+	#content{
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding-top: 80px;
+		border-radius: 0;
+		height: 100%;
+		width: 100%;
+	}
+
+	.input{
+		width: 100%;
+	}
+
+	.instruct{
+		width: 80%;
+		position: relative;
+		padding-top: 10px;
+		margin: auto;
+	}
+
+	h2{
+		font-size: 70%;
+	}
+
+	.visitor{
+		min-width: 100%;
+		border-radius: 0;
+		position: relative;
+		left: 0;
+	}
+
+	.overlay{
+		width: 100%;
+		border-radius: 0;
+	}
+
+	.container{
+		display: flex;
+		flex-direction: row;
+		position: relative;
+		left: 0;
+		width: 100%
+	}
+
+		.left{
+			flex: 3;
+			position: relative;
+			left: 0;
+		}
+
+/*			.mismatch{
+				position: relative;
+				left: 0;
+			}*/
+
+		.right{
+			flex: 7;
+			position: relative;
+			right: 0;
+		}
+
+/*			.list{
+				position: relative;
+				right: 0;
+			}*/
+
+		.category{
+			font-size: 70%;
+		}
+}
 
 
