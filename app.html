@@ -6,19 +6,26 @@
 	<body>
 		<h1>Insta Fun</h1>
 		<div id='content'>
-			<br>
-			<div class="input">
-				<input type="text" name="handle" placeholder="type username here">
-				<button class='search'>SEARCH</button>
+			<div class='instruct'>
+				<p>Type in the username you'd like to get information about.</p>
 			</div>
 			<br>
+			<div class='input'>
+				<input type='text' name='handle' placeholder='username'>
+				<button class='search'>SEARCH</button>
+			</div>
 			<div class='visitor'></div>
 			<br>
 			<div class='container'>
 				<div class='left'>
 					<div class='mismatch'>
 						<h2>Mismatches:</h2>
-						<div class='info'></div>
+						<p class='category'>Not Followed By:</p>
+						<div class='nfb'></div>
+						<br>
+						<br>
+						<p class='category'>Not Following:</p>
+						<div class='nf'></div>
 					</div>
 				</div>
 				<div class='right'>

@@ -15,6 +15,7 @@ var main = function(){
 
 
 	$('.search').click(function(){
+		$('.instruct').hide();
 		var handle = $('input[name=handle]').val();
 		if (clicked === 0){
 			clicked = 1;
@@ -31,7 +32,8 @@ var main = function(){
 		}
 		else {
 			$('.visitor').html('');
-			$('.info').html('');
+			$('.nfb').html('');
+			$('.nf').html('');
 			$('.following').html('');
 			$('.followers').html('');
 			$('.container').hide();
@@ -156,9 +158,8 @@ var main = function(){
 				notFollowed.push(oneArr[x]);
 			}
 		}
-		$('.info').append('<p class="category">Not Followed By:</p>');
 		for (var i = 0; i < notFollowed.length; i++){
-			$('.info').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
+			$('.nfb').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
 		}
 		// console.log('Not followed by: ', notFollowed);
 		for (var x = 0; x < twoArr.length; x++){
@@ -167,9 +168,8 @@ var main = function(){
 			}
 		}
 		// console.log('Not following: ', notFollowing);
-		$('.info').append('<p class="category">Not Following:</p>');
 		for (var i = 0; i < notFollowing.length; i++){
-			$('.info').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
+			$('.nf').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
 		}
 	};
 };
