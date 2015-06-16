@@ -1,8 +1,4 @@
-// Find a way to scrape instagram photos based on a hashtag and download them to a folder.
-
-// 'https://api.instagram.com/v1/media/popular?access_token=youraccesstoken'
-// 'http://localhost/#access_token=6962099.41a6e79.db75930f284e44c9bd967ae15251bedb'
-
+// Let a user log into Instagram to get a list of their followers, who they're following and the mismatches.
 
 
 var main = function(){
@@ -25,25 +21,16 @@ var main = function(){
 				// 'pier' returned pierlikeadock rathen than user 'pier.'
 			}
 			else{
-				$('.visitor').show();
-				$('.container').hide();
-				$('.visitor').html('<p class="notReal">Please type a username.</p>');
+				interface.noHandle();
 			}
 		}
 		else {
-			$('.visitor').html('');
-			$('.nfb').html('');
-			$('.nf').html('');
-			$('.following').html('');
-			$('.followers').html('');
-			$('.container').hide();
-			$('.visitor').css('background-image', 'none');
+			interface.newSearch();
 			if (handle.length > 0){
 				searchUser(handle);
 			}
 			else{
-				$('.visitor').show();
-				$('.visitor').html('<p class="notReal">Please type a username.</p>');
+				interface.noHandle();
 			}
 		}
 	});
@@ -52,17 +39,11 @@ var main = function(){
 		people('https://api.instagram.com/v1/users/search?access_token=' + token + '&q=' + name + '&count=1').done(function(data){
 					var result = data.data;
 					if (result[0]){
-						// console.log('user: ', result[0]);
 						var pic = result[0].profile_picture;
 						var name = result[0].full_name;
 						var user = result[0].username;
 						var ident = result[0].id;
-						$('.visitor').show();
-						$('.visitor').css('background-image', 'url(' + pic + ')');
-						$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
-						$('.container').show();
-						$('.userFollows').html(user + ' Follows:');
-						$('.userFollowing').html(user + '\'s Followers:');
+						interface.displayUser(pic, name, user);
 						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
 						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
@@ -70,15 +51,8 @@ var main = function(){
 						usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
 					}
 					else{
-						$('.container').hide();
-						$('.visitor').css('background-image', 'none');
-						$('.visitor').html('<p class="notReal">That user does not seem to exist.</p>');
+						interface.noUser();
 					}
-					// {username: "colemurphy",
-					// profile_picture: "https://instagramimages-a.akamaihd.net/profiles/profile_6962099_75sq_1354996876.jpg",
-					// id: "6962099",
-					// full_name: "Cole Murphy"}
-					// console.log('info: ', pic, name, user);
 				})
 	};
 
@@ -125,7 +99,6 @@ var main = function(){
 				var names = users.map(function(they){
 					return they.username;
 				});
-				// console.log('first: ', names);
 				bridge(locTwo, names, empty)
 			};
 		});
@@ -142,15 +115,12 @@ var main = function(){
 				var followers = users.map(function(they){
 					return they.username;
 				});
-				// console.log('second: ', followers);
 				compare(following, followers);
 			};
 		});
 	};
 
 	function compare(oneArr, twoArr){
-		// console.log('following: ', oneArr);
-		// console.log('followers: ', twoArr);
 		var notFollowing = [];
 		var notFollowed = [];
 		for (var x = 0; x < oneArr.length; x++){
@@ -161,13 +131,11 @@ var main = function(){
 		for (var i = 0; i < notFollowed.length; i++){
 			$('.nfb').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
 		}
-		// console.log('Not followed by: ', notFollowed);
 		for (var x = 0; x < twoArr.length; x++){
 			if (oneArr.indexOf(twoArr[x]) === -1){
 				notFollowing.push(twoArr[x]);
 			}
 		}
-		// console.log('Not following: ', notFollowing);
 		for (var i = 0; i < notFollowing.length; i++){
 			$('.nf').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
 		}
