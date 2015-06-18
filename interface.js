@@ -1,5 +1,11 @@
 ;(function(){
 	var interface = {
+		logIn: function(){
+			$('.instruct').hide();
+		$('.input').hide();
+		$('.visitor').show();
+		$('.visitor').html('<div class="login"><p class="notReal">Please <a href="https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/app.html&response_type=token">log in</a> with Instagram<br>to use this service.</p></div>');
+		},
 		noHandle: function(){
 			$('.visitor').show();
 			$('.container').hide();

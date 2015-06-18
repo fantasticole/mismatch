@@ -3,35 +3,27 @@
 
 var main = function(){
 	var empty = [];
-	var clicked = 0;
 	$('.visitor').hide();
 	$('.container').hide();
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
 
 
+	if (here.indexOf('app') > 0 && token === undefined){
+		interface.logIn();
+	};
+
 	$('.search').click(function(){
+		interface.newSearch();
 		$('.instruct').hide();
 		var handle = $('input[name=handle]').val();
-		if (clicked === 0){
-			clicked = 1;
-			if (handle.length > 0){
-				searchUser(handle);
-				// Seems to search for users with similar names in your followers/following, rather than a use with that exact username.
-				// 'pier' returned pierlikeadock rathen than user 'pier.'
-			}
-			else{
-				interface.noHandle();
-			}
+		if (handle.length > 0){
+			searchUser(handle);
+			// Seems to search for users with similar names in your followers/following, rather than a use with that exact username.
+			// 'pier' returned pierlikeadock rathen than user 'pier.'
 		}
-		else {
-			interface.newSearch();
-			if (handle.length > 0){
-				searchUser(handle);
-			}
-			else{
-				interface.noHandle();
-			}
+		else{
+			interface.noHandle();
 		}
 	});
 

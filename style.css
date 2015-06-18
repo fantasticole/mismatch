@@ -134,6 +134,11 @@ h2{
 			top: 45px;
 		}
 
+		.visitor .login a{
+			font-size: 1em;
+			top: 0;
+		}
+
 		.visitor a{
 			font-size: 2em;
 			text-decoration: none;
