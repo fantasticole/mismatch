@@ -6,7 +6,8 @@ var main = function(){
 	$('.visitor').hide();
 	$('.container').hide();
 	var here = window.location.href;
-	var token = here.slice(here.indexOf('access_token=')+13);
+	// var token = here.slice(here.indexOf('access_token=')+13);
+	var token = '6962099.41a6e79.db75930f284e44c9bd967ae15251bedb';
 
 
 	if (here.indexOf('app') > 0 && token === undefined){
