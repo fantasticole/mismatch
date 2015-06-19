@@ -8,7 +8,7 @@ var main = function(){
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
 	if (here.indexOf('redirect=true') > -1){
-		window.location.href = 'http://fantasticole.github.io/insta/app.html#';
+		window.location.href = 'http://fantasticole.github.io/insta/app.html?';
 	};
 
 
