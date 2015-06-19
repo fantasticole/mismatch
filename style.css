@@ -334,6 +334,7 @@ h2{
 		border-radius: 0;
 		position: relative;
 		left: 0;
+		margin-top: 10px;
 	}
 
 	.overlay{

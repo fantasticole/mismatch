@@ -32,6 +32,11 @@
 			$('.container').hide();
 			$('.visitor').css('background-image', 'none');
 			$('.visitor').html('<p class="notReal">That user does not seem to exist.</p>');
+		},
+		mismatch: function(arr, div){
+			for (var i = 0; i < arr.length; i++){
+				$(div).append('<a href="https://instagram.com/' + arr[i] +'/">' + arr[i] + '</a><br>');
+			}
 		}
 	};
 	window.interface = interface;

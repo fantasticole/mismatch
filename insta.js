@@ -6,8 +6,8 @@ var main = function(){
 	$('.visitor').hide();
 	$('.container').hide();
 	var here = window.location.href;
-	// var token = here.slice(here.indexOf('access_token=')+13);
-	var token = '6962099.41a6e79.db75930f284e44c9bd967ae15251bedb';
+	var token = here.slice(here.indexOf('access_token=')+13);
+	window.location.href = here.slice(0, here.indexOf('#')+1);
 
 
 	if (here.indexOf('app') > 0 && token === undefined){
@@ -28,6 +28,38 @@ var main = function(){
 		}
 	});
 
+
+	function getUsernames(loc, arr, cb){
+		people(loc).done(function(data){
+			arr = arr.concat(data.data);
+			if (data.pagination.next_url){
+				var newLoc = data.pagination.next_url;
+				getUsernames(newLoc, arr, cb)
+			}
+			else {
+				var names = arr.map(function(they){
+					return they.username;
+				});
+				cb(names);
+			};
+		});
+	}
+
+	function follows(userData, taskDone){
+		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/follows?access_token=" + userData.token;
+		getUsernames(loc, [], function(names){
+			taskDone(userData.key, names);
+		});
+	};
+
+
+	function followedBy(userData, taskDone){
+		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/followed-by?access_token=" + userData.token;
+		getUsernames(loc, [], function(names){
+			taskDone(userData.key, names);
+		});
+	};
+
 	function searchUser(name){
 		people('https://api.instagram.com/v1/users/search?access_token=' + token + '&q=' + name + '&count=1').done(function(data){
 					var result = data.data;
@@ -41,7 +73,11 @@ var main = function(){
 
 						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
-						usernames("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, "https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty)
+						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
+							dataFile.compare(results.follows, results.followedBy);
+							interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
+							interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
+						});
 					}
 					else{
 						interface.noUser();
@@ -81,58 +117,7 @@ var main = function(){
 		});
 	};
 
-	function usernames(loc, locTwo, arr){
-		people(loc).done(function(data){
-			var users = arr.concat(data.data);
-			if (data.pagination.next_url){
-				var newLoc = data.pagination.next_url;
-				usernames(newLoc, locTwo, users)
-			}
-			else {
-				var names = users.map(function(they){
-					return they.username;
-				});
-				bridge(locTwo, names, empty)
-			};
-		});
-	};
-
-	function bridge(loc, following, arr){
-		people(loc).done(function(data){
-			var users = arr.concat(data.data);
-			if (data.pagination.next_url){
-				var newLoc = data.pagination.next_url;
-				bridge(newLoc, following, users)
-			}
-			else {
-				var followers = users.map(function(they){
-					return they.username;
-				});
-				compare(following, followers);
-			};
-		});
-	};
-
-	function compare(oneArr, twoArr){
-		var notFollowing = [];
-		var notFollowed = [];
-		for (var x = 0; x < oneArr.length; x++){
-			if (twoArr.indexOf(oneArr[x]) === -1){
-				notFollowed.push(oneArr[x]);
-			}
-		}
-		for (var i = 0; i < notFollowed.length; i++){
-			$('.nfb').append('<a href="https://instagram.com/' + notFollowed[i] +'/">' + notFollowed[i] + '</a><br>');
-		}
-		for (var x = 0; x < twoArr.length; x++){
-			if (oneArr.indexOf(twoArr[x]) === -1){
-				notFollowing.push(twoArr[x]);
-			}
-		}
-		for (var i = 0; i < notFollowing.length; i++){
-			$('.nf').append('<a href="https://instagram.com/' + notFollowing[i] +'/">' + notFollowing[i] + '</a><br>');
-		}
-	};
+	
 };
 
 
