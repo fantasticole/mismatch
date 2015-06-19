@@ -7,7 +7,7 @@ var main = function(){
 	$('.container').hide();
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
-	if (here.indexOf('#') !== -1){
+	if (here.indexOf('#') !== (here.length-1)){
 		window.location.href = here.slice(0, here.indexOf('#')+1);
 	};
 
