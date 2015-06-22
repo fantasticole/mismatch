@@ -43,6 +43,21 @@ var main = function(){
 		interface.userFollowedBy();
 	});
 
+	$(window).resize(function(){
+		if ($(window).width() > 800){
+			$('.options').hide();
+			$('.container').show();
+			$('.right').show();
+			$('.left').show();
+			$('.topList').show();
+			$('.bottomList').show();
+			$('.divider').show();
+		}
+		else {
+			$('.options').show();
+			$('.container').hide();
+		}
+	});
 
 	function getUsernames(loc, arr, cb){
 		people(loc).done(function(data){

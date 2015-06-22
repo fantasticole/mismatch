@@ -15,7 +15,6 @@
 		showComparison: function(){
 			$('.container').show();
 			$('.left').show();
-			$('.mismatch').css("border-radius: 0");
 			$('.right').hide();
 		},
 		userFollows: function(){
@@ -51,7 +50,7 @@
 			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
 			$('.userFollows').html(user + ' Follows:');
 			$('.userFollowing').html(user + '\'s Followers:');
-			if (screen.width < 1500){
+			if ($(window).width() < 800){
 				$('.options').show();
 				$('.container').hide();
 			}
@@ -60,6 +59,7 @@
 			}
 		},
 		noUser: function(){
+			$('.visitor').show();
 			$('.container').hide();
 			$('.options').hide();
 			$('.visitor').css('background-image', 'none');
