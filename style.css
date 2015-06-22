@@ -151,12 +151,15 @@ h2{
 			color: #00fcdb;
 		}
 
-
+	.options{
+		visibility: hidden;
+	}
 
 	.container{
 		display: flex;
 		flex-direction: row;
-		height: 1200px;
+		/*height: 1200px;*/
+		max-height: 1200px;
 	}
 
 		.left{
@@ -283,7 +286,7 @@ h2{
 		position: absolute;
 		top: 0;
 		left: 0;
-		padding-top: 80px;
+		padding-top: 60px;
 		border-radius: 0;
 		height: 100%;
 		width: 100%;
@@ -296,26 +299,39 @@ h2{
 	}
 
 	.input{
-		width: 98%;
-		flex-direction: column;
-		height: 75px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		height: 30px;
 	}
 
 		input{
-			width: 75%;
-			position: relative;
-			top: 0;
-			margin: auto;
-			margin-bottom: 20px;
+			flex: 2;
+			height: 100%;
+			border-radius: 0 0 0 15px;
+			box-shadow: none;
+			border-bottom: 5px solid #000;
+		}
+
+		input:focus{
+			box-shadow: none;
+			border-bottom: 5px solid #00fcdb;
 		}
 
 		button{
-			width: 35%;
-			position: relative;
-			bottom: 0;
+			flex: 1;
+			height: 125%;
+			border-radius: 0 15px 0 0;
 			margin: auto;
-			padding-top: 3px;
-			padding-bottom: 8px;
+			box-shadow: none;
+			border-bottom: 5px solid #FFF;
+			border-left: none;
+			border-right: none;
+		}
+
+		button:hover{
+			box-shadow: none;
+			border-bottom: 5px solid #000;
 		}
 
 	.instruct{
@@ -326,7 +342,9 @@ h2{
 	}
 
 	h2{
-		font-size: 100%;
+		font-size: 2em;
+		padding: 0;
+		margin-top: 5px;
 	}
 
 	.visitor{
@@ -337,59 +355,87 @@ h2{
 		margin-top: 10px;
 	}
 
-	.overlay{
+		.overlay{
+			width: 100%;
+			border-radius: 0;
+		}
+
+	.options{
+		visibility: visible;
+		display: flex;
+		flex-direction: row;
 		width: 100%;
-		border-radius: 0;
+		height: 30px;
+		margin: auto;
 	}
 
+		.options button{
+			flex: 1;
+			margin: 0;
+			border-radius: 0;
+		}
+
+		.options button:active{
+			background-color: #FFF;
+		}
+
 	.container{
-		flex-direction: row;
 		position: relative;
 		left: 0;
 		bottom: 0;
-		width: 100%
+		width: 100%;
+		background-color: rgba(250, 250, 250, 0.8);
+		margin-top: 8px;
 	}
 
 		.left{
-			flex: 3;
-			position: relative;
-			left: 0;
 			bottom: 0;
-			height: 100%;
+			width: 100%;
+			height: inherit;
 		}
 
 			.mismatch{
 				width: 100%;
-				position: absolute;
+				position: relative;
 				left: 0;
-				height: 100%;
-				border-radius: 0 30px 0 0;
+				height: 1100px;
+				border-radius: 0;
+				background-color: transparent;
 			}
+
+				.nfb{
+					float: left;
+					height: 100%;
+					background-color: rgba(0, 0, 0, 0.3);
+				}
+
+				.nf{
+					float: right;
+					height: 100%;
+					background-color: rgba(0, 0, 0, 0.3);
+				}
 
 		.right{
-			flex: 7;
-			position: relative;
-			right: 0;
 			bottom: 0;
-			height: 100%;
+			width: 100%;
+			height: inherit;
 		}
 
-			.topList{
-				width: 100%;
-				position: absolute;
+			.topList, .bottomList{
+				width: 90%;
+				position: relative;
 				top: 0;
-				right: 0;
-				height: 49%;
+				left: 5%;
+				right: 5%;
+				height: 1100px;
+				border-radius: 0;
+				background-color: transparent;
 			}
 
-			.bottomList{
-				width: 100%;
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				height: 49%;
-				border-radius: 0 30px 0 0;
-			}
+				.following, .followers{
+					border-radius: 0 30px;
+					background-color: rgba(0, 0, 0, 0.3);
+				}
 
 				.person{
 					height: 80px;
@@ -412,5 +458,17 @@ h2{
 			font-size: 70%;
 		}
 }
+
+
+@media (max-width: 500px){
+	input{
+		border-radius: 0;
+	}
+
+	.search{
+		border-radius: 0;
+	}
+}
+
 
 

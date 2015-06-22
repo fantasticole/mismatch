@@ -1,7 +1,7 @@
 ;(function(){
 	var interface = {
 		logIn: function(){
-			$('.instruct').hide();
+		$('.instruct').hide();
 		$('.input').hide();
 		$('.visitor').show();
 		$('.visitor').html('<div class="login"><p class="notReal">Please <a href="https://instagram.com/oauth/authorize/?client_id=41a6e79d271549738e3294ad7c272bcd&redirect_uri=http://fantasticole.github.io/insta/app.html&response_type=token">log in</a> with Instagram<br>to use this service.</p></div>');
@@ -9,7 +9,31 @@
 		noHandle: function(){
 			$('.visitor').show();
 			$('.container').hide();
+			$('.options').hide();
 			$('.visitor').html('<p class="notReal">Please type a username.</p>');
+		},
+		showComparison: function(){
+			$('.container').show();
+			$('.left').show();
+			$('.mismatch').css("border-radius: 0");
+			$('.right').hide();
+		},
+		userFollows: function(){
+			$('.container').show();
+			$('.right').show();
+			$('.left').hide();
+			$('.topList').show();
+			$('.divider').hide();
+			$('.bottomList').hide();
+
+		},
+		userFollowedBy: function(){
+			$('.container').show();
+			$('.right').show();
+			$('.left').hide();
+			$('.topList').hide();
+			$('.divider').hide();
+			$('.bottomList').show();
 		},
 		newSearch: function(){
 			$('.visitor').html('');
@@ -18,18 +42,26 @@
 			$('.following').html('');
 			$('.followers').html('');
 			$('.container').hide();
+			$('.options').hide();
 			$('.visitor').css('background-image', 'none');
 		},
 		displayUser: function(pic, name, user){
 			$('.visitor').show();
 			$('.visitor').css('background-image', 'url(' + pic + ')');
 			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
-			$('.container').show();
 			$('.userFollows').html(user + ' Follows:');
 			$('.userFollowing').html(user + '\'s Followers:');
+			if (screen.width < 1500){
+				$('.options').show();
+				$('.container').hide();
+			}
+			else{
+				$('.container').show();
+			}
 		},
 		noUser: function(){
 			$('.container').hide();
+			$('.options').hide();
 			$('.visitor').css('background-image', 'none');
 			$('.visitor').html('<p class="notReal">That user does not seem to exist.</p>');
 		},

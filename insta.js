@@ -5,6 +5,7 @@ var main = function(){
 	var empty = [];
 	$('.visitor').hide();
 	$('.container').hide();
+	$('.options').hide();
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
 	if (here.indexOf('redirect=true') > -1){
@@ -28,6 +29,18 @@ var main = function(){
 		else{
 			interface.noHandle();
 		}
+	});
+
+	$('.compare').click(function(){
+		interface.showComparison();
+	});
+
+	$('.uf').click(function(){
+		interface.userFollows();
+	});
+
+	$('.ufb').click(function(){
+		interface.userFollowedBy();
 	});
 
 
