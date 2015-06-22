@@ -300,6 +300,8 @@ h2{
 	.input{
 		width: 100%;
 		height: 30px;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 		input{
@@ -355,6 +357,10 @@ h2{
 		.overlay{
 			width: 100%;
 			border-radius: 0;
+		}
+
+		.real{
+			font-size: 2.5em;
 		}
 
 	.options{
@@ -486,6 +492,7 @@ h2{
 				.person{
 					height: 80px;
 					overflow: auto;
+					white-space: nowrap;
 				}
 
 				.person img{
