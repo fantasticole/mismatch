@@ -307,10 +307,11 @@ h2{
 		input{
 			display: inline-block;
 			width: 66%;
-			height: 82%;
+			height: 80%;
 			border-radius: 0 0 0 15px;
 			box-shadow: none;
 			border-bottom: 5px solid #000;
+			margin-right: 0;
 		}
 
 		input:focus{
@@ -403,6 +404,7 @@ h2{
 	.container{
 		position: relative;
 		left: 0;
+		top: 0;
 		bottom: 0;
 		width: 100%;
 		background-color: rgba(250, 250, 250, 0.8);
@@ -411,6 +413,7 @@ h2{
 
 		.left{
 			bottom: 0;
+			top: 0;
 			width: 100%;
 			height: inherit;
 		}
@@ -425,7 +428,7 @@ h2{
 			}
 
 				.nfb a, .nf a, .category{
-					font-size: 1em;
+					font-size: 0.8em;
 				}
 
 				.nfb{
@@ -466,6 +469,7 @@ h2{
 
 		.right{
 			bottom: 0;
+			top: 0;
 			width: 100%;
 			height: inherit;
 		}
@@ -501,11 +505,13 @@ h2{
 					width: auto;
 					position: relative;
 					left: 0;
+					display: inline-block;
 				}
 
 				.person a{
 					padding: 2px;
 					font-size: 1.5em;
+					display: inline-block;
 				}
 }
 
