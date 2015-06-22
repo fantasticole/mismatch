@@ -61,6 +61,9 @@
 			$('.userFollowing').html(user + '\'s Followers:');
 			if ($(window).width() < 800){
 				$('.options').show();
+				$('.ufb').removeAttr('style');
+				$('.compare').removeAttr('style');
+				$('.uf').removeAttr('style');
 				$('.container').hide();
 			}
 			else{

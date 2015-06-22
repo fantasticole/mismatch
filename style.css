@@ -492,7 +492,7 @@ h2{
 
 				.person{
 					height: 80px;
-					overflow: auto;
+					overflow: hidden;
 					white-space: nowrap;
 				}
 
@@ -526,6 +526,7 @@ h2{
 	}
 
 	.search{
+		margin-left: 0;
 		border-radius: 0;
 		width: 34%;
 		padding: 0;
