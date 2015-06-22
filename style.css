@@ -341,9 +341,7 @@ h2{
 	}
 
 	h2{
-		font-size: 2em;
-		padding: 0;
-		margin-top: 5px;
+		visibility: hidden;
 	}
 
 	.visitor{
@@ -369,14 +367,11 @@ h2{
 	}
 
 		.options button{
+			text-transform: uppercase;
 			flex: 1;
-			/*width: 32%;*/
 			margin: 0;
 			border-radius: 0;
-		}
-
-		.options button:active{
-			background-color: #FFF;
+			border-bottom: none;
 		}
 
 	.container{
@@ -403,16 +398,44 @@ h2{
 				background-color: transparent;
 			}
 
+				.nfb a, .nf a, .category{
+					font-size: 1em;
+				}
+
 				.nfb{
-					float: left;
-					height: 100%;
-					background-color: rgba(0, 0, 0, 0.3);
+					position: absolute;
+					top: 50px;
+					left: 5%;
+					width: 42.5%;
+					height: 900px;
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 0 30px;
 				}
 
 				.nf{
-					float: right;
-					height: 100%;
-					background-color: rgba(0, 0, 0, 0.3);
+					position: absolute;
+					top: 50px;
+					right: 5%;
+					width: 42.5%;
+					height: 900px;
+					background-color: rgba(0, 0, 0, 0.2);
+					border-radius: 0 30px;
+				}
+
+				.category{
+					position: absolute;
+					top: 0;
+					width: 50%;
+				}
+
+				.first{
+					position: absolute;
+					left: 0;
+				}
+
+				.second{
+					position: absolute;
+					right: 0;
 				}
 
 		.right{
@@ -433,8 +456,12 @@ h2{
 			}
 
 				.following, .followers{
+					position: absolute;
+					top: 30px;
+					left: 2.5%;
+					width: 95%;
 					border-radius: 0 30px;
-					background-color: rgba(0, 0, 0, 0.3);
+					background-color: rgba(0, 0, 0, 0.2);
 				}
 
 				.person{
@@ -451,12 +478,8 @@ h2{
 
 				.person a{
 					padding: 2px;
-					font-size: 0.8em;
+					font-size: 1.5em;
 				}
-
-		.category{
-			font-size: 70%;
-		}
 }
 
 

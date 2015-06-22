@@ -13,11 +13,17 @@
 			$('.visitor').html('<p class="notReal">Please type a username.</p>');
 		},
 		showComparison: function(){
+			$('.compare').css({'background-color':'rgba(250, 250, 250, 0.8)', 'color':'#000'});
+			$('.uf').css({'background-color':'#000', 'color':'#00FCDB'});
+			$('.ufb').css({'background-color':'#000', 'color':'#00FCDB'});
 			$('.container').show();
 			$('.left').show();
 			$('.right').hide();
 		},
 		userFollows: function(){
+			$('.uf').css({'background-color':'rgba(250, 250, 250, 0.8)', 'color':'#000'});
+			$('.compare').css({'background-color':'#000', 'color':'#00FCDB'});
+			$('.ufb').css({'background-color':'#000', 'color':'#00FCDB'});
 			$('.container').show();
 			$('.right').show();
 			$('.left').hide();
@@ -27,6 +33,9 @@
 
 		},
 		userFollowedBy: function(){
+			$('.ufb').css({'background-color':'rgba(250, 250, 250, 0.8)', 'color':'#000'});
+			$('.compare').css({'background-color':'#000', 'color':'#00FCDB'});
+			$('.uf').css({'background-color':'#000', 'color':'#00FCDB'});
 			$('.container').show();
 			$('.right').show();
 			$('.left').hide();
