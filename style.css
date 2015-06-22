@@ -307,11 +307,12 @@ h2{
 		input{
 			display: inline-block;
 			width: 66%;
-			height: 80%;
+			height: 82%;
 			border-radius: 0 0 0 15px;
 			box-shadow: none;
 			border-bottom: 5px solid #000;
 			margin-right: 0;
+			padding-right: 0;
 		}
 
 		input:focus{
@@ -325,6 +326,7 @@ h2{
 			height: 100%;
 			border-radius: 0 15px 0 0;
 			margin-left: 0;
+			padding-left: 0;
 			box-shadow: none;
 			border-bottom: 5px solid #FFF;
 			border-left: none;
@@ -377,6 +379,7 @@ h2{
 
 		.options button{
 			text-transform: uppercase;
+			text-align: center;
 			margin: 0;
 			border-radius: 0;
 			border-bottom: none;
@@ -391,13 +394,13 @@ h2{
 		}
 		
 		.uf{
-			width: 33%;
+			width: 34%;
 			position: relative;
 			margin: auto;
 		}
 		
 		.ufb{
-			width: 34%;
+			width: 33%;
 			position: absolute;
 			right: 0;
 			padding-right: 10px;
@@ -515,7 +518,6 @@ h2{
 				.person a{
 					padding: 2px;
 					font-size: 1.5em;
-					float: right;
 					display: inline-block;
 				}
 }

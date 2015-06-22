@@ -19,6 +19,7 @@
 			$('.container').show();
 			$('.left').show();
 			$('.right').hide();
+			return false;
 		},
 		userFollows: function(){
 			$('.uf').css({'background-color':'rgba(250, 250, 250, 0.8)', 'color':'#000'});
@@ -30,6 +31,7 @@
 			$('.topList').show();
 			$('.divider').hide();
 			$('.bottomList').hide();
+			return false;
 
 		},
 		userFollowedBy: function(){
@@ -42,6 +44,7 @@
 			$('.topList').hide();
 			$('.divider').hide();
 			$('.bottomList').show();
+			return false;
 		},
 		newSearch: function(){
 			$('.visitor').html('');
