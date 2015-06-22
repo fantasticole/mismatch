@@ -3,6 +3,7 @@
 
 var main = function(){
 	var empty = [];
+	var handle;
 	$('.visitor').hide();
 	$('.container').hide();
 	$('.options').hide();
@@ -20,7 +21,7 @@ var main = function(){
 	$('.search').click(function(){
 		interface.newSearch();
 		$('.instruct').hide();
-		var handle = $('input[name=handle]').val();
+		handle = $('input[name=handle]').val();
 		if (handle.length > 0){
 			searchUser(handle);
 			// Seems to search for users with similar names in your followers/following, rather than a use with that exact username.
@@ -46,16 +47,20 @@ var main = function(){
 	$(window).resize(function(){
 		if ($(window).width() > 800){
 			$('.options').hide();
-			$('.container').show();
-			$('.right').show();
-			$('.left').show();
-			$('.topList').show();
-			$('.bottomList').show();
-			$('.divider').show();
+			if (handle.length > 0){
+				$('.container').show();
+				$('.right').show();
+				$('.left').show();
+				$('.topList').show();
+				$('.bottomList').show();
+				$('.divider').show();
+			}
 		}
 		else {
-			$('.options').show();
 			$('.container').hide();
+			if (handle.length > 0){
+				$('.options').show();
+			}
 		}
 	});
 

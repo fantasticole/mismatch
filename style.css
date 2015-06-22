@@ -299,7 +299,7 @@ h2{
 
 	.input{
 		width: 100%;
-		height: 30px;
+		height: 35px;
 		overflow: hidden;
 		white-space: nowrap;
 	}
@@ -307,7 +307,7 @@ h2{
 		input{
 			display: inline-block;
 			width: 66%;
-			height: 100%;
+			height: 80%;
 			border-radius: 0 0 0 15px;
 			box-shadow: none;
 			border-bottom: 5px solid #000;
@@ -321,7 +321,7 @@ h2{
 		button{
 			display: inline-block;
 			width: 34%;
-			height: 125%;
+			height: 100%;
 			border-radius: 0 15px 0 0;
 			margin: auto;
 			box-shadow: none;
@@ -430,21 +430,21 @@ h2{
 				.nfb{
 					position: absolute;
 					top: 50px;
-					left: 5%;
-					width: 42.5%;
+					left: 0;
+					width: 47%;
 					height: 900px;
 					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 0 30px;
+					border-radius: 0 30px 30px 0;
 				}
 
 				.nf{
 					position: absolute;
 					top: 50px;
-					right: 5%;
-					width: 42.5%;
+					right: 0;
+					width: 47%;
 					height: 900px;
 					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 0 30px;
+					border-radius: 30px 0 0 30px;
 				}
 
 				.category{
@@ -513,11 +513,29 @@ h2{
 	input{
 		border-radius: 0;
 		width: 66%;
+		padding: 0;
+		border-bottom: 5px solid #000;
+	}
+
+	input:focus{
+		border-radius: 0;
+		width: 66%;
+		padding: 0;
+		border-bottom: 5px solid #00fcdb;
 	}
 
 	.search{
 		border-radius: 0;
 		width: 34%;
+		padding: 0;
+		border-bottom: 5px solid #FFF;
+	}
+
+	.search:hover{
+		border-radius: 0;
+		width: 34%;
+		padding: 0;
+		border-bottom: 5px solid #000;
 	}
 }
 
