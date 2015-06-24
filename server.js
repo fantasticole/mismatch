@@ -19,9 +19,6 @@ function postOverHTTPS(hostname, path, params, cb){
 	};
 
 	var req = https.request(options, function(res) {
-		console.log("statusCode: ", res.statusCode);
-		console.log("headers: ", res.headers);
-
 		var body = '';
 
 		res.on('data', function(d) {
@@ -57,14 +54,17 @@ function authorizeWithInstagram(userCode, cb){
 		}
 		var data = JSON.parse(body);
 		var token = data.access_token;
-		cb(null, token);
+		cb(null, token, data.user);
 	});
 };
 
+app.use(express.static('public'));
+
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
-	authorizeWithInstagram(userCode, function(err, token){
-		res.send(token);
+	authorizeWithInstagram(userCode, function(err, token, userData){
+		console.log(err, token, userData);
+		res.redirect('app.html');
 		// res.send('Hello World!');
 	});
 });
