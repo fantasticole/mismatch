@@ -104,9 +104,10 @@ var main = function(){
 				var user = data.username;
 				var ident = data.id;
 				interface.displayUser(pic, name, user);
-				makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
-				makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+				display(data.follows, '.following');
+
+				display(data.followers, '.followers');
 
 				dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
 					dataFile.compare(results.follows, results.followedBy);
@@ -137,21 +138,6 @@ var main = function(){
 			url: loc,
 		})
 	};
-
-	function makeArr(loc, arr, div){
-		people(loc).done(function(data){
-			list = arr.concat(data.data);
-			if (data.pagination.next_url){
-				var newLoc = data.pagination.next_url;
-				makeArr(newLoc, list, div)
-			}
-			else {
-				var final = list;
-				display(final, div);
-			};
-		});
-	};
-
 	
 };
 

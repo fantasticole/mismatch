@@ -89,19 +89,34 @@ function authorizeWithInstagram(userCode, cb){
 
 app.use(express.static('public'));
 
-var user;
 var userToken;
 
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
 	authorizeWithInstagram(userCode, function(err, token, userData){
-		user = userData;
 		userToken = token;
 		console.log(err, token, userData);
 		res.redirect('app.html');
 		// res.send('Hello World!');
 	});
 });
+
+function makeArr(hostname, path, arr, cb){
+	getOverHTTPS(hostname, path, function(err, response, body){
+		if (err){
+			return cb(err);
+		}
+		var data = JSON.parse(body);
+		list = arr.concat(data.data);
+		if (data.pagination.next_url){
+			var newLoc = data.pagination.next_url.replace('https://api.instagram.com', '');
+			makeArr(hostname, newLoc, list, cb)
+		}
+		else {
+			cb(null, list);
+		};
+	});
+};
 
 app.get('/user/:name', function (req, res) {
 	var name = req.params.name;
@@ -110,9 +125,18 @@ app.get('/user/:name', function (req, res) {
 		var data = JSON.parse(body);
 		console.log('getting HTTP!!');
 		console.log(data);
-		res.send(data.data[0]);
+		var user = data.data[0];
+		makeArr('api.instagram.com', '/v1/users/' + user.id + '/follows?access_token=' + userToken, [], function(err, arr){
+			user['follows'] = arr;
+			makeArr('api.instagram.com', '/v1/users/' + user.id + '/followed-by?access_token=' + userToken, [], function(err, arrTwo){
+				user['followers'] = arrTwo;
+				res.send(user);
+			})
+		})
 	});
 });
+
+
 
 var server = app.listen(3000, function () {
 
