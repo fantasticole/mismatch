@@ -25,7 +25,7 @@ var main = function(){
 		if (handle.length > 0){
 			searchUser(handle);
 			// Seems to search for users with similar names in your followers/following, rather than a use with that exact username.
-			// 'pier' returned pierlikeadock rathen than user 'pier.'
+			// 'pier' returned pierlikeadock rather than user 'pier.'
 		}
 		else{
 			interface.noHandle();
@@ -96,28 +96,28 @@ var main = function(){
 	};
 
 	function searchUser(name){
-		people('https://api.instagram.com/v1/users/search?access_token=' + token + '&q=' + name + '&count=1').done(function(data){
-					var result = data.data;
-					if (result[0]){
-						var pic = result[0].profile_picture;
-						var name = result[0].full_name;
-						var user = result[0].username;
-						var ident = result[0].id;
-						interface.displayUser(pic, name, user);
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
+		people('/user/' + name).done(function(data){
+			console.log('We made it!', data);
+			if (data){
+				var pic = data.profile_picture;
+				var name = data.full_name;
+				var user = data.username;
+				var ident = data.id;
+				interface.displayUser(pic, name, user);
+				makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+				makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
-						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-							dataFile.compare(results.follows, results.followedBy);
-							interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
-							interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
-						});
-					}
-					else{
-						interface.noUser();
-					}
-				})
+				dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
+					dataFile.compare(results.follows, results.followedBy);
+					interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
+					interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
+				});
+			}
+			else{
+				interface.noUser();
+			}
+		})
 	};
 
 
@@ -132,7 +132,7 @@ var main = function(){
 	function people(loc){
 		return $.ajax({
 			type: "GET",
-			dataType: "jsonp",
+			dataType: "json",
 			cache: false,
 			url: loc,
 		})

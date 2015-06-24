@@ -4,6 +4,35 @@ var https = require('https');
 var querystring = require('querystring');
 var config = require('./config');
 
+function getOverHTTPS(hostname, path, cb){
+	var options = {
+		hostname: hostname,
+		port: 443,
+		path: path,
+		method: 'GET'
+	};
+
+	var req = https.request(options, function(res) {
+		var body = '';
+
+		res.on('data', function(d) {
+			body += d;
+		});
+
+		res.on('end', function() {
+			// Pass information about the response.
+			// Can't call return, need to pass a function.
+			cb(null, res, body);
+		});
+	});
+
+	req.end();
+
+	req.on('error', function(e) {
+		cb(e)
+	});
+};
+
 function postOverHTTPS(hostname, path, params, cb){
 	var postData = querystring.stringify(params);
 
@@ -60,12 +89,28 @@ function authorizeWithInstagram(userCode, cb){
 
 app.use(express.static('public'));
 
+var user;
+var userToken;
+
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
 	authorizeWithInstagram(userCode, function(err, token, userData){
+		user = userData;
+		userToken = token;
 		console.log(err, token, userData);
 		res.redirect('app.html');
 		// res.send('Hello World!');
+	});
+});
+
+app.get('/user/:name', function (req, res) {
+	var name = req.params.name;
+	console.log('name: ', name);
+	getOverHTTPS('api.instagram.com', '/v1/users/search?access_token=' + userToken + '&q=' + name + '&count=1', function(err, response, body){
+		var data = JSON.parse(body);
+		console.log('getting HTTP!!');
+		console.log(data);
+		res.send(data.data[0]);
 	});
 });
 
