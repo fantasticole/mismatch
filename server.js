@@ -126,12 +126,18 @@ app.get('/user/:name', function (req, res) {
 		console.log('getting HTTP!!');
 		console.log(data);
 		var user = data.data[0];
+		var cb = function(){
+			if (user['follows'] !== undefined && user['followers'] !== undefined){
+				res.send(user);
+			}
+		};
 		makeArr('api.instagram.com', '/v1/users/' + user.id + '/follows?access_token=' + userToken, [], function(err, arr){
 			user['follows'] = arr;
-			makeArr('api.instagram.com', '/v1/users/' + user.id + '/followed-by?access_token=' + userToken, [], function(err, arrTwo){
-				user['followers'] = arrTwo;
-				res.send(user);
-			})
+			cb();
+		})
+		makeArr('api.instagram.com', '/v1/users/' + user.id + '/followed-by?access_token=' + userToken, [], function(err, arrTwo){
+			user['followers'] = arrTwo;
+			cb();
 		})
 	});
 });
