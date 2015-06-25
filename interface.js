@@ -56,7 +56,7 @@
 		displayUser: function(pic, name, user){
 			$('.visitor').show();
 			$('.visitor').css('background-image', 'url(' + pic + ')');
-			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/">' + user + '</a></div>');
+			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>');
 			$('.userFollows').html(user + ' Follows:');
 			$('.userFollowing').html(user + '\'s Followers:');
 			if ($(window).width() < 800){
@@ -79,7 +79,7 @@
 		},
 		mismatch: function(arr, div){
 			for (var i = 0; i < arr.length; i++){
-				$(div).append('<a href="https://instagram.com/' + arr[i] +'/">' + arr[i] + '</a><br>');
+				$(div).append('<a href="https://instagram.com/' + arr[i] +'/" target="_blank">' + arr[i] + '</a><br>');
 			}
 		}
 	};

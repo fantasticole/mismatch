@@ -125,7 +125,7 @@ var main = function(){
 		for (var x = 0; x < arr.length; x++){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
-			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
+			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
 		}
 	};
 
