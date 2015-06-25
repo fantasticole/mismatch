@@ -19,7 +19,6 @@ h1{
 h2{
 	color: #00FCDB;
 	font-size: 1.6em;
-	/*padding-top: 20px;*/
 	padding-bottom: 0;
 	font-weight: normal;
 }
@@ -156,7 +155,6 @@ h2{
 	}
 
 	.container{
-		/*display: flex;*/
 		height: 1200px;
 	}
 
@@ -170,46 +168,6 @@ h2{
 			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-/*			.mismatch{
-				width: 90%;
-				height: 95%;
-				border-radius: 0 30px;
-				position: relative;
-				left: 5%;
-				right: 5%;
-				text-align: center;
-				background-color: rgba(250, 250, 250, 0.8);
-			}
-
-				.nfb{
-					position: relative;
-					top: 0;
-					overflow-y: auto;
-					height: 42.5%;
-					margin-bottom: 20px;
-				}
-
-				.nf{
-					position: relative;
-					bottom: 0;
-					overflow-y: auto;
-					height: 42.5%;
-				}
-
-				.nfb a, .nf a{
-					font-size: 0.7em;
-					text-decoration: none;
-				}
-
-				.nfb a:hover, .nf a:hover{
-					color: #cda4f7;
-				}
-
-				.category{
-					font-size: 0.8em;
-					color: #000000;
-				}*/
-
 		.right{
 			width: 48.5%;
 			position: relative;
@@ -220,71 +178,60 @@ h2{
 			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-/*			.topList, .bottomList{
-				text-align: center;
-				width: 95%;
-				height: 45.8%;
-				border-radius: 0 30px;
+			.following, .followers{
+				height: 90%;
+				border-radius: 0 0 0 30px;
+				overflow-y: auto;
 				position: relative;
-				left: 3%;
-				text-align: center;
-				background-color: rgba(250, 250, 250, 0.8);
-			}*/
+				bottom: 0;
+			}
 
-				.following, .followers{
-					height: 90%;
-					border-radius: 0 0 0 30px;
-					overflow-y: auto;
-					position: relative;
-					bottom: 0;
+				.person, .personMM{
+					padding: 5px;
+					display: flex;
+					flex-direction: row;
+					height: 100px;
+					overflow: auto;
 				}
 
-					.person, .personMM{
-						padding: 5px;
-						display: flex;
-						flex-direction: row;
-						height: 100px;
-						overflow: auto;
-					}
+				.person:hover{
+					background-color: #FFFFFF;
+				}
 
-					.person:hover{
-						background-color: #FFFFFF;
-					}
+				.personMM:hover{
+					background-color: #000000;
+				}
 
-					.personMM:hover{
-						background-color: #000000;
-					}
+				.person img, .personMM img{
+					height: 100%;
+					width: 100px;
+					display: inline-block;
+				}
 
-					.person img, .personMM img{
-						height: 100%;
-						width: 100px;
-						display: inline-block;
-					}
+				.person:hover img, .personMM:hover img{
+					box-shadow: 3px 3px #00FCDB;
+				}
 
-					.person:hover img, .personMM:hover img{
-						box-shadow: 3px 3px #00FCDB;
-					}
+				.person a{
+					padding: 20px;
+					text-decoration: none;
+					color: #000000;
+					margin: auto;
+					font-size: 1.5em;
+				}
 
-					.person a{
-						padding: 20px;
-						text-decoration: none;
-						color: #000000;
-						margin: auto;
-						font-size: 1.5em;
-					}
+				.personMM a{
+					padding: 20px;
+					text-decoration: none;
+					color: #FFFFFF;
+					margin: auto;
+					font-size: 1.5em;
+				}
 
-					.personMM a{
-						padding: 20px;
-						text-decoration: none;
-						color: #FFFFFF;
-						margin: auto;
-						font-size: 1.5em;
-					}
-
-					.person:hover a, .personMM:hover a{
-						text-decoration: none;
-						color: #00FCDB;
-					}
+				.person:hover a, .personMM:hover a{
+					text-decoration: none;
+					color: #00FCDB;
+				}
 
 @media (max-width: 800px){
 	html{
@@ -409,21 +356,11 @@ h2{
 			display: inline-block;
 			height: 35px;
 		}
-
-/*		.compare{
-			width: 33%;
-			position: absolute;
-			left: 0;
-		}*/
 		
 		.uf{
 			width: 50%;
 			position: absolute;
 			left: 0;
-/*			margin: auto;
-			padding-left: auto;
-			padding-right: auto;
-			float: none;*/
 		}
 		
 		.ufb{
@@ -451,55 +388,6 @@ h2{
 			background-color: transparent;
 		}
 
-/*			.mismatch{
-				width: 100%;
-				position: relative;
-				left: 0;
-				height: 1100px;
-				border-radius: 0;
-				background-color: transparent;
-			}
-
-				.nfb a, .nf a, .category{
-					font-size: 0.8em;
-				}
-
-				.nfb{
-					position: absolute;
-					top: 50px;
-					left: 0;
-					width: 47%;
-					height: 900px;
-					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 0 30px 30px 0;
-				}
-
-				.nf{
-					position: absolute;
-					top: 50px;
-					right: 0;
-					width: 47%;
-					height: 900px;
-					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 30px 0 0 30px;
-				}
-
-				.category{
-					position: absolute;
-					top: 0;
-					width: 50%;
-				}
-
-				.first{
-					position: absolute;
-					left: 0;
-				}
-
-				.second{
-					position: absolute;
-					right: 0;
-				}*/
-
 		.right{
 			position: absolute;
 			bottom: 0;
@@ -510,48 +398,36 @@ h2{
 			background-color: transparent;
 		}
 
-/*			.topList, .bottomList{
-				width: 90%;
+			.following, .followers{
+				top: 30px;
+				left: 2.5%;
+				right: 2.5%;
+				width: 95%;
+				border-radius: 0 30px;
+				background-color: rgba(0, 0, 0, 0.2);
+				padding-bottom: 0;
+			}
+
+			.person, .personMM{
+				height: 80px;
+				overflow: auto;
+				white-space: nowrap;
+			}
+
+			.person img, .personMM img{
+				height: 100%;
+				width: auto;
 				position: relative;
-				top: 0;
-				left: 5%;
-				right: 5%;
-				height: 1100px;
-				border-radius: 0;
-				background-color: transparent;
-			}*/
+				left: 0;
+				float: left;
+				display: inline-block;
+			}
 
-				.following, .followers{
-					/*position: absolute;*/
-					top: 30px;
-					left: 2.5%;
-					right: 2.5%;
-					width: 95%;
-					border-radius: 0 30px;
-					background-color: rgba(0, 0, 0, 0.2);
-					padding-bottom: 0;
-				}
-
-				.person, .personMM{
-					height: 80px;
-					overflow: auto;
-					white-space: nowrap;
-				}
-
-				.person img, .personMM img{
-					height: 100%;
-					width: auto;
-					position: relative;
-					left: 0;
-					float: left;
-					display: inline-block;
-				}
-
-				.person a, .personMM a{
-					padding: 2px;
-					font-size: 1.5em;
-					display: inline-block;
-				}
+			.person a, .personMM a{
+				padding: 2px;
+				font-size: 1.5em;
+				display: inline-block;
+			}
 }
 
 
