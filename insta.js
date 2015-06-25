@@ -33,9 +33,9 @@ var main = function(){
 		}
 	});
 
-	$('.compare').click(function(){
-		interface.showComparison();
-	});
+	// $('.compare').click(function(){
+	// 	interface.showComparison();
+	// });
 
 	$('.uf').click(function(){
 		interface.userFollows();
@@ -105,10 +105,14 @@ var main = function(){
 						interface.displayUser(pic, name, user);
 
 						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-							display(results.follows, '.following');
-							display(results.followedBy, '.followers');
-							interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
-							interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
+							var nf = dataFile.compare(results.followedBy, results.follows)
+							var nfb = dataFile.compare(results.follows, results.followedBy)
+							// console.log('Not following: ', nf);
+							// console.log('Not followed by: ', nfb);
+							display(results.follows, nfb, '.following');
+							display(results.followedBy, nf, '.followers');
+							// interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
+							// interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
 						});
 					}
 					else{
@@ -118,12 +122,23 @@ var main = function(){
 	};
 
 
-	function display(arr, div){
+	function display(arr, arrTwo, div){
+		// arr is an array of strings.
+		// arrTwo is an array of objects.
+		var newArr = arrTwo.map(function(obj){
+			return JSON.stringify(obj);
+		});
+		// console.log('new Arr: ', newArr);
 		for (var x = 0; x < arr.length; x++){
 			var current = JSON.parse(arr[x]);
 			var user = Object.keys(current);
 			var pic = current[user];
-			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			if (newArr.indexOf(arr[x]) < 0){
+				$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			}
+			else{
+				$(div).prepend($('<div class="personMM">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			}
 		}
 	};
 

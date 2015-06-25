@@ -19,7 +19,7 @@ h1{
 h2{
 	color: #00FCDB;
 	font-size: 1.6em;
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 	padding-bottom: 0;
 	font-weight: normal;
 }
@@ -28,7 +28,7 @@ h2{
 	text-align: center;
 	background-color: #CDA4F7;
 	height: 80%;
-	width: 80%;
+	width: 90%;
 	border-radius: 0 30px;
 	position: relative;
 	margin: auto;
@@ -144,7 +144,7 @@ h2{
 			text-decoration: none;
 			color: #000000;
 			position: relative;
-			bottom: 50px;
+			bottom: 40px;
 		}
 
 		.visitor a:hover{
@@ -156,19 +156,21 @@ h2{
 	}
 
 	.container{
-		display: flex;
-		flex-direction: row;
-		max-height: 1200px;
+		/*display: flex;*/
+		height: 1200px;
 	}
 
 		.left{
-			width: 30%;
+			width: 48.5%;
 			position: relative;
-			left: 0;
-			height: 1200px;
+			float: left;
+			top: 2%;
+			height: 1150px;
+			border-radius: 0 30px;
+			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-			.mismatch{
+/*			.mismatch{
 				width: 90%;
 				height: 95%;
 				border-radius: 0 30px;
@@ -206,16 +208,19 @@ h2{
 				.category{
 					font-size: 0.8em;
 					color: #000000;
-				}
+				}*/
 
 		.right{
-			width: 70%;
+			width: 48.5%;
 			position: relative;
-			right: 0;
-			height: 1200px;
+			float: right;
+			top: 2%;
+			height: 1150px;
+			border-radius: 0 30px;
+			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-			.topList, .bottomList{
+/*			.topList, .bottomList{
 				text-align: center;
 				width: 95%;
 				height: 45.8%;
@@ -224,17 +229,17 @@ h2{
 				left: 3%;
 				text-align: center;
 				background-color: rgba(250, 250, 250, 0.8);
-			}
+			}*/
 
 				.following, .followers{
-					height: 87%;
+					height: 90%;
 					border-radius: 0 0 0 30px;
 					overflow-y: auto;
 					position: relative;
 					bottom: 0;
 				}
 
-					.person{
+					.person, .personMM{
 						padding: 5px;
 						display: flex;
 						flex-direction: row;
@@ -246,13 +251,17 @@ h2{
 						background-color: #FFFFFF;
 					}
 
-					.person img{
+					.personMM:hover{
+						background-color: #000000;
+					}
+
+					.person img, .personMM img{
 						height: 100%;
 						width: 100px;
 						display: inline-block;
 					}
 
-					.person:hover img{
+					.person:hover img, .personMM:hover img{
 						box-shadow: 3px 3px #00FCDB;
 					}
 
@@ -264,7 +273,15 @@ h2{
 						font-size: 1.5em;
 					}
 
-					.person:hover a{
+					.personMM a{
+						padding: 20px;
+						text-decoration: none;
+						color: #FFFFFF;
+						margin: auto;
+						font-size: 1.5em;
+					}
+
+					.person:hover a, .personMM:hover a{
 						text-decoration: none;
 						color: #00FCDB;
 					}
@@ -393,23 +410,24 @@ h2{
 			height: 35px;
 		}
 
-		.compare{
+/*		.compare{
 			width: 33%;
 			position: absolute;
 			left: 0;
-		}
+		}*/
 		
 		.uf{
-			width: 34%;
-			position: relative;
-			margin: auto;
+			width: 50%;
+			position: absolute;
+			left: 0;
+/*			margin: auto;
 			padding-left: auto;
 			padding-right: auto;
-			float: none;
+			float: none;*/
 		}
 		
 		.ufb{
-			width: 33%;
+			width: 50%;
 			position: absolute;
 			right: 0;
 		}
@@ -424,13 +442,16 @@ h2{
 	}
 
 		.left{
+			position: absolute;
 			bottom: 0;
 			top: 0;
+			left: 0;
 			width: 100%;
 			height: inherit;
+			background-color: transparent;
 		}
 
-			.mismatch{
+/*			.mismatch{
 				width: 100%;
 				position: relative;
 				left: 0;
@@ -477,16 +498,19 @@ h2{
 				.second{
 					position: absolute;
 					right: 0;
-				}
+				}*/
 
 		.right{
+			position: absolute;
 			bottom: 0;
 			top: 0;
+			right: 0;
 			width: 100%;
 			height: inherit;
+			background-color: transparent;
 		}
 
-			.topList, .bottomList{
+/*			.topList, .bottomList{
 				width: 90%;
 				position: relative;
 				top: 0;
@@ -495,24 +519,26 @@ h2{
 				height: 1100px;
 				border-radius: 0;
 				background-color: transparent;
-			}
+			}*/
 
 				.following, .followers{
-					position: absolute;
+					/*position: absolute;*/
 					top: 30px;
 					left: 2.5%;
+					right: 2.5%;
 					width: 95%;
 					border-radius: 0 30px;
 					background-color: rgba(0, 0, 0, 0.2);
+					padding-bottom: 0;
 				}
 
-				.person{
+				.person, .personMM{
 					height: 80px;
 					overflow: auto;
 					white-space: nowrap;
 				}
 
-				.person img{
+				.person img, .personMM img{
 					height: 100%;
 					width: auto;
 					position: relative;
@@ -521,7 +547,7 @@ h2{
 					display: inline-block;
 				}
 
-				.person a{
+				.person a, .personMM a{
 					padding: 2px;
 					font-size: 1.5em;
 					display: inline-block;
