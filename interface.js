@@ -79,7 +79,8 @@
 		},
 		mismatch: function(arr, div){
 			for (var i = 0; i < arr.length; i++){
-				$(div).append('<a href="https://instagram.com/' + arr[i] +'/" target="_blank">' + arr[i] + '</a><br>');
+				var user = Object.keys(arr[i])
+				$(div).append('<a href="https://instagram.com/' + user +'/" target="_blank">' + user + '</a><br>');
 			}
 		}
 	};

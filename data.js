@@ -18,7 +18,8 @@
 			var list = [];
 			for (var x = 0; x < oneArr.length; x++){
 				if (twoArr.indexOf(oneArr[x]) === -1){
-					list.push(oneArr[x]);
+					var current = JSON.parse(oneArr[x]);
+					list.push(current);
 				}
 			}
 			return list;

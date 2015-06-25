@@ -8,7 +8,8 @@ var main = function(){
 	$('.container').hide();
 	$('.options').hide();
 	var here = window.location.href;
-	var token = here.slice(here.indexOf('access_token=')+13);
+	// var token = here.slice(here.indexOf('access_token=')+13);
+	var token = '6962099.41a6e79.db75930f284e44c9bd967ae15251bedb';
 	if (here.indexOf('redirect=true') > -1){
 		window.location.href = here.slice(0, here.indexOf('#')+1);
 	};
@@ -72,26 +73,35 @@ var main = function(){
 				getUsernames(newLoc, arr, cb)
 			}
 			else {
-				var names = arr.map(function(they){
-					return they.username;
+				var users = [];
+				arr.forEach(function(they){
+					var person = {};
+					person[they.username] = they.profile_picture;
+					users.push(JSON.stringify(person));
 				});
-				cb(names);
+				// users['names'] = arr.map(function(they){
+				// 	return they.username;
+				// });
+				// users['pics'] = arr.map(function(they){
+				// 	return they.profile_picture;
+				// });
+				cb(users);
 			};
 		});
 	}
 
 	function follows(userData, taskDone){
 		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/follows?access_token=" + userData.token;
-		getUsernames(loc, [], function(names){
-			taskDone(userData.key, names);
+		getUsernames(loc, [], function(users){
+			taskDone(userData.key, users);
 		});
 	};
 
 
 	function followedBy(userData, taskDone){
 		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/followed-by?access_token=" + userData.token;
-		getUsernames(loc, [], function(names){
-			taskDone(userData.key, names);
+		getUsernames(loc, [], function(users){
+			taskDone(userData.key, users);
 		});
 	};
 
@@ -104,12 +114,20 @@ var main = function(){
 						var user = result[0].username;
 						var ident = result[0].id;
 						interface.displayUser(pic, name, user);
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
+						// makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
 
-						makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
+						// makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
 						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-							dataFile.compare(results.follows, results.followedBy);
+							// results.follows = an array of objects: {username: url}
+							// var one = dataFile.compare(results.follows, results.followedBy);
+							// var two = dataFile.compare(results.followedBy, results.follows);
+							// console.log('one: ', one);
+							// console.log('two: ', two);
+							// console.log('follows: ', results.follows);
+							// console.log('followed by: ', results.followedBy);
+							display(results.follows, '.following');
+							display(results.followedBy, '.followers');
 							interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
 							interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
 						});
@@ -123,8 +141,10 @@ var main = function(){
 
 	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
-			var pic = arr[x].profile_picture;
-			var user = arr[x].username;
+			var current = JSON.parse(arr[x]);
+			// console.log('current: ', current);
+			var user = Object.keys(current);
+			var pic = current[user];
 			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
 		}
 	};
