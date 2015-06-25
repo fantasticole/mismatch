@@ -12,14 +12,11 @@ html{
 h1{
 	margin: 40px 0 40px 60px;
 	color: #00FCDB;
-	font-size: 2em;
 	z-index: 10;
 }
 
 h2{
 	color: #00FCDB;
-	font-size: 1.6em;
-	padding-bottom: 0;
 	font-weight: normal;
 }
 
@@ -29,7 +26,6 @@ h2{
 	height: 80%;
 	width: 90%;
 	border-radius: 0 30px;
-	position: relative;
 	margin: auto;
 	padding: 20px;
 }
@@ -52,13 +48,9 @@ h2{
 
 	.input{
 		display: flex;
-		flex-direction: row;
-		position: relative;
 		margin: auto;
 		height: 25px;
-		width: 75%;
 		max-width: 500px;
-		text-align: center;
 	}
 
 		input{
@@ -84,7 +76,6 @@ h2{
 			border: 1px solid black;
 			border-radius: 0 10px;
 			height: 100%;
-			text-align: center;
 			margin-left: 10px;
 			color: #00FCDB;
 			font-family: courier;
@@ -108,15 +99,12 @@ h2{
 		background-color: rgba(250, 250, 250, 0.8);
 		width: 80%;
 		height: 150px;
-		position: relative;
 		margin: auto;
-		text-align: center;
 	}
 
 		.overlay{
 			border-radius: 0 30px;
 			background-color: rgba(250, 250, 250, 0.5);
-			width: 100%;
 			height: 100%;
 		}
 
@@ -183,15 +171,18 @@ h2{
 				border-radius: 0 0 0 30px;
 				overflow-y: auto;
 				position: relative;
-				bottom: 0;
 			}
 
 				.person, .personMM{
 					padding: 5px;
 					display: flex;
-					flex-direction: row;
 					height: 100px;
 					overflow: auto;
+					overflow-y: hidden;
+				}
+
+				.personMM{
+					background-color: #rgba(0, 0, 0, 0.5);
 				}
 
 				.person:hover{
@@ -203,9 +194,8 @@ h2{
 				}
 
 				.person img, .personMM img{
-					height: 100%;
 					width: 100px;
-					display: inline-block;
+					float: left;
 				}
 
 				.person:hover img, .personMM:hover img{
@@ -216,7 +206,8 @@ h2{
 					padding: 20px;
 					text-decoration: none;
 					color: #000000;
-					margin: auto;
+					position: relative;
+					top: 15%;
 					font-size: 1.5em;
 				}
 
@@ -224,7 +215,8 @@ h2{
 					padding: 20px;
 					text-decoration: none;
 					color: #FFFFFF;
-					margin: auto;
+					position: relative;
+					top: 15%;
 					font-size: 1.5em;
 				}
 
@@ -251,7 +243,6 @@ h2{
 		left: 0;
 		padding-top: 60px;
 		border-radius: 0;
-		height: 100%;
 		width: 100%;
 		padding-left: 0;
 		padding-right: 0;
@@ -265,8 +256,6 @@ h2{
 		flex: none;
 		width: 100%;
 		height: 35px;
-		overflow: hidden;
-		white-space: nowrap;
 		margin: 0;
 		margin-right: auto;
 		margin-left: auto;
