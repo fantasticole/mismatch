@@ -49,12 +49,7 @@ var main = function(){
 		if ($(window).width() > 800){
 			$('.options').hide();
 			if (handle.length > 0){
-				$('.container').show();
-				$('.right').show();
-				$('.left').show();
-				$('.topList').show();
-				$('.bottomList').show();
-				$('.divider').show();
+				interface.resize();
 			}
 		}
 		else {
@@ -79,12 +74,6 @@ var main = function(){
 					person[they.username] = they.profile_picture;
 					users.push(JSON.stringify(person));
 				});
-				// users['names'] = arr.map(function(they){
-				// 	return they.username;
-				// });
-				// users['pics'] = arr.map(function(they){
-				// 	return they.profile_picture;
-				// });
 				cb(users);
 			};
 		});
@@ -114,18 +103,8 @@ var main = function(){
 						var user = result[0].username;
 						var ident = result[0].id;
 						interface.displayUser(pic, name, user);
-						// makeArr("https://api.instagram.com/v1/users/" + ident + "/follows?access_token=" + token, empty, '.following');
-
-						// makeArr("https://api.instagram.com/v1/users/" + ident + "/followed-by?access_token=" + token, empty, '.followers');
 
 						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-							// results.follows = an array of objects: {username: url}
-							// var one = dataFile.compare(results.follows, results.followedBy);
-							// var two = dataFile.compare(results.followedBy, results.follows);
-							// console.log('one: ', one);
-							// console.log('two: ', two);
-							// console.log('follows: ', results.follows);
-							// console.log('followed by: ', results.followedBy);
 							display(results.follows, '.following');
 							display(results.followedBy, '.followers');
 							interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
@@ -142,7 +121,6 @@ var main = function(){
 	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
 			var current = JSON.parse(arr[x]);
-			// console.log('current: ', current);
 			var user = Object.keys(current);
 			var pic = current[user];
 			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
@@ -157,21 +135,6 @@ var main = function(){
 			url: loc,
 		})
 	};
-
-	function makeArr(loc, arr, div){
-		people(loc).done(function(data){
-			list = arr.concat(data.data);
-			if (data.pagination.next_url){
-				var newLoc = data.pagination.next_url;
-				makeArr(newLoc, list, div)
-			}
-			else {
-				var final = list;
-				display(final, div);
-			};
-		});
-	};
-
 	
 };
 

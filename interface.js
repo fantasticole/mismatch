@@ -82,6 +82,14 @@
 				var user = Object.keys(arr[i])
 				$(div).append('<a href="https://instagram.com/' + user +'/" target="_blank">' + user + '</a><br>');
 			}
+		},
+		resize: function(){
+			$('.container').show();
+			$('.right').show();
+			$('.left').show();
+			$('.topList').show();
+			$('.bottomList').show();
+			$('.divider').show();
 		}
 	};
 	window.interface = interface;
