@@ -1,7 +1,6 @@
 var express = require('express');
 var https = require('https');
 var querystring = require('querystring');
-var config = require('./config');
 var crypto = require('crypto');
 var cookieParser = require('cookie-parser');
 
@@ -9,15 +8,21 @@ var app = express();
 
 app.use(cookieParser());
 
+console.log(process.env);
+var clientId = process.env.INSTAGRAM_CLIENT_ID;
+var clientSecret = process.env.INSTAGRAM_CLIENT_SECRET;
+var sessionSecret = process.env.INSTAGRAM_SESSION_SECRET;
+var encryptionKey = process.env.INSTAGRAM_ENCRYPTION_KEY;
+
 function encrypt(text){
-  var cipher = crypto.createCipher('aes-256-cbc', config.encryptionKey)
+  var cipher = crypto.createCipher('aes-256-cbc', encryptionKey)
   var crypted = cipher.update(text,'utf8','hex')
   crypted += cipher.final('hex');
   return crypted;
 }
  
 function decrypt(text){
-  var decipher = crypto.createDecipher('aes-256-cbc', config.encryptionKey)
+  var decipher = crypto.createDecipher('aes-256-cbc', encryptionKey)
   var dec = decipher.update(text,'hex','utf8')
   dec += decipher.final('utf8');
   return dec;
@@ -89,8 +94,8 @@ function postOverHTTPS(hostname, path, params, cb){
 };
 
 function authorizeWithInstagram(userCode, cb){
-	var params = {'client_id' : config.instagram.client_id,
-		'client_secret' : config.instagram.client_secret,
+	var params = {'client_id' : clientId,
+		'client_secret' : clientSecret,
 		'grant_type' : 'authorization_code',
 		'redirect_uri' : 'http://localhost:3000/authorize',
 		'code' : userCode
