@@ -1,8 +1,27 @@
 var express = require('express');
-var app = express();
 var https = require('https');
 var querystring = require('querystring');
 var config = require('./config');
+var crypto = require('crypto');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+
+app.use(cookieParser());
+
+function encrypt(text){
+  var cipher = crypto.createCipher('aes-256-cbc', config.encryptionKey)
+  var crypted = cipher.update(text,'utf8','hex')
+  crypted += cipher.final('hex');
+  return crypted;
+}
+ 
+function decrypt(text){
+  var decipher = crypto.createDecipher('aes-256-cbc', config.encryptionKey)
+  var dec = decipher.update(text,'hex','utf8')
+  dec += decipher.final('utf8');
+  return dec;
+}
 
 function getOverHTTPS(hostname, path, cb){
 	var options = {
@@ -89,13 +108,11 @@ function authorizeWithInstagram(userCode, cb){
 
 app.use(express.static('public'));
 
-var userToken;
-
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
 	authorizeWithInstagram(userCode, function(err, token, userData){
-		userToken = token;
 		console.log(err, token, userData);
+		res.cookie('mismatch', encrypt(token));
 		res.redirect('app.html');
 		// res.send('Hello World!');
 	});
@@ -119,6 +136,8 @@ function makeArr(hostname, path, arr, cb){
 };
 
 app.get('/user/:name', function (req, res) {
+	var userToken = decrypt(req.cookies.mismatch);
+	console.log(userToken);
 	var name = req.params.name;
 	console.log('name: ', name);
 	getOverHTTPS('api.instagram.com', '/v1/users/search?access_token=' + userToken + '&q=' + name + '&count=1', function(err, response, body){
@@ -142,7 +161,10 @@ app.get('/user/:name', function (req, res) {
 	});
 });
 
-
+app.post('/logout', function(req, res){
+	res.clearCookie('mismatch');
+	res.redirect('/');
+})
 
 var server = app.listen(3000, function () {
 
