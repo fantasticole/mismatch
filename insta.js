@@ -4,14 +4,16 @@
 var main = function(){
 	var empty = [];
 	var handle;
-	$('.visitor').hide();
-	$('.container').hide();
-	$('.options').hide();
 	var here = window.location.href;
 	var token = here.slice(here.indexOf('access_token=')+13);
 	if (here.indexOf('redirect=true') > -1){
 		window.location.href = here.slice(0, here.indexOf('#')+1);
 	};
+	var current = 'https://api.instagram.com/v1/users/self/?access_token=' + token;
+	$(people(current).done(function(data){
+		console.log(data.data.username);
+		searchUser(data.data.username);
+	}));
 
 
 	if (here.indexOf('app') > 0 && token === undefined){
