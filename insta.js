@@ -70,11 +70,11 @@ var main = function(){
 				getUsernames(newLoc, arr, cb)
 			}
 			else {
-				var users = [];
-				arr.forEach(function(they){
-					var person = {};
-					person[they.username] = they.profile_picture;
-					users.push(JSON.stringify(person));
+				var users = arr.map(function(they){
+					return {
+						username: they.username,
+						url: they.profile_picture
+					};
 				});
 				cb(users);
 			};
@@ -107,10 +107,11 @@ var main = function(){
 						interface.displayUser(pic, name, user);
 
 						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-							var nf = dataFile.compare(results.followedBy, results.follows)
-							var nfb = dataFile.compare(results.follows, results.followedBy)
-							display(results.follows, nfb, '.following');
-							display(results.followedBy, nf, '.followers');
+							dataFile.setReciprocation(results.followedBy, results.follows)
+							console.log('followedby: ', results.followedBy);
+							console.log('follows: ', results.follows);
+							display(results.follows, '.following');
+							display(results.followedBy, '.followers');
 						});
 					}
 					else{
@@ -120,15 +121,11 @@ var main = function(){
 	};
 
 
-	function display(arr, arrTwo, div){
-		var newArr = arrTwo.map(function(obj){
-			return JSON.stringify(obj);
-		});
+	function display(arr, div){
 		for (var x = 0; x < arr.length; x++){
-			var current = JSON.parse(arr[x]);
-			var user = Object.keys(current);
-			var pic = current[user];
-			if (newArr.indexOf(arr[x]) < 0){
+			var user = arr[x].username;
+			var pic = arr[x].url;
+			if (arr[x].reciprocate === true){
 				$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
 			}
 			else{
