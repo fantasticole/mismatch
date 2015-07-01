@@ -108,8 +108,6 @@ var main = function(){
 
 						dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
 							dataFile.setReciprocation(results.followedBy, results.follows)
-							console.log('followedby: ', results.followedBy);
-							console.log('follows: ', results.follows);
 							display(results.follows, '.following');
 							display(results.followedBy, '.followers');
 						});
