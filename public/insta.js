@@ -85,10 +85,10 @@ var main = function(){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
 			if (arr[x].reciprocate === true){
-				$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+				$(div).append($('<div class="person">').html('<img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
 			}
 			else{
-				$(div).prepend($('<div class="personMM">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+				$(div).prepend($('<div class="personMM">').html('<img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
 			}
 		}
 	};

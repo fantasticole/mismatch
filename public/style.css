@@ -175,10 +175,9 @@ h2{
 
 				.person, .personMM{
 					padding: 5px;
-					display: flex;
 					height: 100px;
-					overflow: auto;
-					overflow-y: hidden;
+					overflow-x: auto;
+					white-space: nowrap;
 				}
 
 				.personMM{
@@ -195,7 +194,10 @@ h2{
 
 				.person img, .personMM img{
 					width: 100px;
+					height: 100%;
 					float: left;
+					display: inline-block;
+					margin-right: 5px;
 				}
 
 				.person:hover img, .personMM:hover img{
@@ -203,21 +205,21 @@ h2{
 				}
 
 				.person a{
-					padding: 20px;
+					padding-top: 20px;
 					text-decoration: none;
 					color: #000000;
-					position: relative;
-					top: 15%;
+					margin: auto;
 					font-size: 1.5em;
+					display: inline-block;
 				}
 
 				.personMM a{
-					padding: 20px;
+					padding-top: 20px;
 					text-decoration: none;
 					color: #FFFFFF;
-					position: relative;
-					top: 15%;
+					margin: auto;
 					font-size: 1.5em;
+					display: inline-block;
 				}
 
 				.person:hover a, .personMM:hover a{
@@ -399,23 +401,21 @@ h2{
 
 			.person, .personMM{
 				height: 80px;
-				overflow: auto;
 				white-space: nowrap;
+				overflow: hidden;
 			}
 
 			.person img, .personMM img{
 				height: 100%;
 				width: auto;
-				position: relative;
-				left: 0;
-				float: left;
-				display: inline-block;
+				min-width: 80px;
 			}
 
 			.person a, .personMM a{
-				padding: 2px;
+				overflow-x: auto;
+				top: 0;
+				margin: auto;
 				font-size: 1.5em;
-				display: inline-block;
 			}
 }
 
