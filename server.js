@@ -8,12 +8,12 @@ var app = express();
 
 app.use(cookieParser());
 
-console.log(process.env);
 var clientId = process.env.INSTAGRAM_CLIENT_ID;
 var clientSecret = process.env.INSTAGRAM_CLIENT_SECRET;
 var sessionSecret = process.env.INSTAGRAM_SESSION_SECRET;
 var encryptionKey = process.env.INSTAGRAM_ENCRYPTION_KEY;
 var port = process.env.PORT;
+var url = process.env.BASE_URL;
 
 function encrypt(text){
   var cipher = crypto.createCipher('aes-256-cbc', encryptionKey)
@@ -98,7 +98,7 @@ function authorizeWithInstagram(userCode, cb){
 	var params = {'client_id' : clientId,
 		'client_secret' : clientSecret,
 		'grant_type' : 'authorization_code',
-		'redirect_uri' : 'http://localhost:3000/authorize',
+		'redirect_uri' : url + '/authorize',
 		'code' : userCode
 	};
 
