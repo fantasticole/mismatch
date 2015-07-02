@@ -80,8 +80,6 @@ function postOverHTTPS(hostname, path, params, cb){
 		});
 
 		res.on('end', function() {
-			// Pass information about the response.
-			// Can't call return, need to pass a function.
 			cb(null, res, body);
 		});
 	});
@@ -121,10 +119,8 @@ app.get('/request_authorization', function(req, res){
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
 	authorizeWithInstagram(userCode, function(err, token, userData){
-		console.log(err, token, userData);
 		res.cookie('mismatch', encrypt(token));
-		res.redirect('app.html');
-		// res.send('Hello World!');
+		res.redirect('app.html?user=' + userData.username);
 	});
 });
 
@@ -147,13 +143,9 @@ function makeArr(hostname, path, arr, cb){
 
 app.get('/user/:name', function (req, res) {
 	var userToken = decrypt(req.cookies.mismatch);
-	console.log(userToken);
 	var name = req.params.name;
-	console.log('name: ', name);
 	getOverHTTPS('api.instagram.com', '/v1/users/search?access_token=' + userToken + '&q=' + name + '&count=1', function(err, response, body){
 		var data = JSON.parse(body);
-		console.log('getting HTTP!!');
-		console.log(data);
 		var user = data.data[0];
 		var cb = function(){
 			if (user['follows'] !== undefined && user['followers'] !== undefined){
@@ -181,12 +173,7 @@ var server = app.listen(port, function () {
 	var host = server.address().address;
 	var port = server.address().port;
 
-	console.log('Example app listening at http://%s:%s', host, port);
-
 });
-
-console.log('Hello from the server!!');
-
 
 
 

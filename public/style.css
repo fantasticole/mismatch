@@ -12,15 +12,11 @@ html{
 h1{
 	margin: 40px 0 40px 60px;
 	color: #00FCDB;
-	font-size: 2em;
 	z-index: 10;
 }
 
 h2{
 	color: #00FCDB;
-	font-size: 1.6em;
-	padding-top: 20px;
-	padding-bottom: 0;
 	font-weight: normal;
 }
 
@@ -28,9 +24,8 @@ h2{
 	text-align: center;
 	background-color: #CDA4F7;
 	height: 80%;
-	width: 80%;
+	width: 90%;
 	border-radius: 0 30px;
-	position: relative;
 	margin: auto;
 	padding: 20px;
 }
@@ -53,13 +48,9 @@ h2{
 
 	.input{
 		display: flex;
-		flex-direction: row;
-		position: relative;
 		margin: auto;
 		height: 25px;
-		width: 75%;
 		max-width: 500px;
-		text-align: center;
 	}
 
 		input{
@@ -85,7 +76,6 @@ h2{
 			border: 1px solid black;
 			border-radius: 0 10px;
 			height: 100%;
-			text-align: center;
 			margin-left: 10px;
 			color: #00FCDB;
 			font-family: courier;
@@ -109,15 +99,12 @@ h2{
 		background-color: rgba(250, 250, 250, 0.8);
 		width: 80%;
 		height: 150px;
-		position: relative;
 		margin: auto;
-		text-align: center;
 	}
 
 		.overlay{
 			border-radius: 0 30px;
 			background-color: rgba(250, 250, 250, 0.5);
-			width: 100%;
 			height: 100%;
 		}
 
@@ -144,7 +131,7 @@ h2{
 			text-decoration: none;
 			color: #000000;
 			position: relative;
-			bottom: 50px;
+			bottom: 40px;
 		}
 
 		.visitor a:hover{
@@ -156,118 +143,87 @@ h2{
 	}
 
 	.container{
-		display: flex;
-		flex-direction: row;
-		max-height: 1200px;
+		height: 1200px;
 	}
 
 		.left{
-			width: 30%;
+			width: 48.5%;
 			position: relative;
-			left: 0;
-			height: 1200px;
+			float: left;
+			top: 2%;
+			height: 1150px;
+			border-radius: 0 30px;
+			background-color: rgba(250, 250, 250, 0.8);
 		}
-
-			.mismatch{
-				width: 90%;
-				height: 95%;
-				border-radius: 0 30px;
-				position: relative;
-				left: 5%;
-				right: 5%;
-				text-align: center;
-				background-color: rgba(250, 250, 250, 0.8);
-			}
-
-				.nfb{
-					position: relative;
-					top: 0;
-					overflow-y: auto;
-					height: 42.5%;
-					margin-bottom: 20px;
-				}
-
-				.nf{
-					position: relative;
-					bottom: 0;
-					overflow-y: auto;
-					height: 42.5%;
-				}
-
-				.nfb a, .nf a{
-					font-size: 0.7em;
-					text-decoration: none;
-				}
-
-				.nfb a:hover, .nf a:hover{
-					color: #cda4f7;
-				}
-
-				.category{
-					font-size: 0.8em;
-					color: #000000;
-				}
 
 		.right{
-			width: 70%;
+			width: 48.5%;
 			position: relative;
-			right: 0;
-			height: 1200px;
+			float: right;
+			top: 2%;
+			height: 1150px;
+			border-radius: 0 30px;
+			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-			.topList, .bottomList{
-				text-align: center;
-				width: 95%;
-				height: 45.8%;
-				border-radius: 0 30px;
+			.following, .followers{
+				height: 90%;
+				border-radius: 0 0 0 30px;
+				overflow-y: auto;
 				position: relative;
-				left: 3%;
-				text-align: center;
-				background-color: rgba(250, 250, 250, 0.8);
 			}
 
-				.following, .followers{
-					height: 87%;
-					border-radius: 0 0 0 30px;
-					overflow-y: auto;
-					position: relative;
-					bottom: 0;
+				.person, .personMM{
+					padding: 5px;
+					display: flex;
+					height: 100px;
+					overflow: auto;
+					overflow-y: hidden;
 				}
 
-					.person{
-						padding: 5px;
-						display: flex;
-						flex-direction: row;
-						height: 100px;
-						overflow: auto;
-					}
+				.personMM{
+					background-color: #rgba(0, 0, 0, 0.5);
+				}
 
-					.person:hover{
-						background-color: #FFFFFF;
-					}
+				.person:hover{
+					background-color: #FFFFFF;
+				}
 
-					.person img{
-						height: 100%;
-						width: 100px;
-						display: inline-block;
-					}
+				.personMM:hover{
+					background-color: #000000;
+				}
 
-					.person:hover img{
-						box-shadow: 3px 3px #00FCDB;
-					}
+				.person img, .personMM img{
+					width: 100px;
+					float: left;
+				}
 
-					.person a{
-						padding: 20px;
-						text-decoration: none;
-						color: #000000;
-						margin: auto;
-						font-size: 1.5em;
-					}
+				.person:hover img, .personMM:hover img{
+					box-shadow: 3px 3px #00FCDB;
+				}
 
-					.person:hover a{
-						text-decoration: none;
-						color: #00FCDB;
-					}
+				.person a{
+					padding: 20px;
+					text-decoration: none;
+					color: #000000;
+					position: relative;
+					top: 15%;
+					font-size: 1.5em;
+				}
+
+				.personMM a{
+					padding: 20px;
+					text-decoration: none;
+					color: #FFFFFF;
+					position: relative;
+					top: 15%;
+					font-size: 1.5em;
+				}
+
+				.person:hover a, .personMM:hover a{
+					text-decoration: none;
+					color: #00FCDB;
+				}
 
 @media (max-width: 800px){
 	html{
@@ -287,7 +243,6 @@ h2{
 		left: 0;
 		padding-top: 60px;
 		border-radius: 0;
-		height: 100%;
 		width: 100%;
 		padding-left: 0;
 		padding-right: 0;
@@ -301,8 +256,6 @@ h2{
 		flex: none;
 		width: 100%;
 		height: 35px;
-		overflow: hidden;
-		white-space: nowrap;
 		margin: 0;
 		margin-right: auto;
 		margin-left: auto;
@@ -392,27 +345,17 @@ h2{
 			display: inline-block;
 			height: 35px;
 		}
-
-		.compare{
-			width: 33%;
+		
+		.uf{
+			width: 50%;
 			position: absolute;
 			left: 0;
 		}
 		
-		.uf{
-			width: 34%;
-			position: relative;
-			margin: auto;
-			padding-left: auto;
-			padding-right: auto;
-			float: none;
-		}
-		
 		.ufb{
-			width: 33%;
+			width: 50%;
 			position: absolute;
 			right: 0;
-			padding-right: 10px;
 		}
 
 	.container{
@@ -425,108 +368,55 @@ h2{
 	}
 
 		.left{
+			position: absolute;
 			bottom: 0;
 			top: 0;
+			left: 0;
 			width: 100%;
 			height: inherit;
+			background-color: transparent;
 		}
-
-			.mismatch{
-				width: 100%;
-				position: relative;
-				left: 0;
-				height: 1100px;
-				border-radius: 0;
-				background-color: transparent;
-			}
-
-				.nfb a, .nf a, .category{
-					font-size: 0.8em;
-				}
-
-				.nfb{
-					position: absolute;
-					top: 50px;
-					left: 0;
-					width: 47%;
-					height: 900px;
-					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 0 30px 30px 0;
-				}
-
-				.nf{
-					position: absolute;
-					top: 50px;
-					right: 0;
-					width: 47%;
-					height: 900px;
-					background-color: rgba(0, 0, 0, 0.2);
-					border-radius: 30px 0 0 30px;
-				}
-
-				.category{
-					position: absolute;
-					top: 0;
-					width: 50%;
-				}
-
-				.first{
-					position: absolute;
-					left: 0;
-				}
-
-				.second{
-					position: absolute;
-					right: 0;
-				}
 
 		.right{
+			position: absolute;
 			bottom: 0;
 			top: 0;
+			right: 0;
 			width: 100%;
 			height: inherit;
+			background-color: transparent;
 		}
 
-			.topList, .bottomList{
-				width: 90%;
-				position: relative;
-				top: 0;
-				left: 5%;
-				right: 5%;
-				height: 1100px;
-				border-radius: 0;
-				background-color: transparent;
+			.following, .followers{
+				top: 30px;
+				left: 2.5%;
+				right: 2.5%;
+				width: 95%;
+				border-radius: 0 30px;
+				background-color: rgba(0, 0, 0, 0.2);
+				padding-bottom: 0;
 			}
 
-				.following, .followers{
-					position: absolute;
-					top: 30px;
-					left: 2.5%;
-					width: 95%;
-					border-radius: 0 30px;
-					background-color: rgba(0, 0, 0, 0.2);
-				}
+			.person, .personMM{
+				height: 80px;
+				overflow: auto;
+				white-space: nowrap;
+			}
 
-				.person{
-					height: 80px;
-					overflow: auto;
-					white-space: nowrap;
-				}
+			.person img, .personMM img{
+				height: 100%;
+				width: auto;
+				position: relative;
+				left: 0;
+				float: left;
+				display: inline-block;
+			}
 
-				.person img{
-					height: 100%;
-					width: auto;
-					position: relative;
-					left: 0;
-					float: left;
-					display: inline-block;
-				}
-
-				.person a{
-					padding: 2px;
-					font-size: 1.5em;
-					display: inline-block;
-				}
+			.person a, .personMM a{
+				padding: 2px;
+				font-size: 1.5em;
+				display: inline-block;
+			}
 }
 
 

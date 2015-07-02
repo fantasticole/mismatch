@@ -3,18 +3,15 @@
 
 var main = function(){
 	var empty = [];
-	var handle;
 	$('.visitor').hide();
 	$('.container').hide();
 	$('.options').hide();
 	var here = window.location.href;
-	var token = here.slice(here.indexOf('access_token=')+13);
-	if (here.indexOf('redirect=true') > -1){
-		window.location.href = here.slice(0, here.indexOf('#')+1);
-	};
+	var handle = here.slice(here.indexOf('=')+1);
+	$(searchUser(handle))
 
 
-	if (here.indexOf('app') > 0 && token === undefined){
+	if (here.indexOf('app') > 0 && handle === undefined){
 		interface.logIn();
 	};
 
@@ -51,9 +48,6 @@ var main = function(){
 				$('.container').show();
 				$('.right').show();
 				$('.left').show();
-				$('.topList').show();
-				$('.bottomList').show();
-				$('.divider').show();
 			}
 		}
 		else {
@@ -80,21 +74,6 @@ var main = function(){
 		});
 	}
 
-	function follows(userData, taskDone){
-		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/follows?access_token=" + userData.token;
-		getUsernames(loc, [], function(names){
-			taskDone(userData.key, names);
-		});
-	};
-
-
-	function followedBy(userData, taskDone){
-		var loc = "https://api.instagram.com/v1/users/" + userData.ident + "/followed-by?access_token=" + userData.token;
-		getUsernames(loc, [], function(names){
-			taskDone(userData.key, names);
-		});
-	};
-
 	function searchUser(name){
 		people('/user/' + name).done(function(data){
 			console.log('We made it!', data);
@@ -105,15 +84,14 @@ var main = function(){
 				var ident = data.id;
 				interface.displayUser(pic, name, user);
 
+				dataFile.setReciprocation(data.follows, data.followers);
+
 				display(data.follows, '.following');
 
 				display(data.followers, '.followers');
 
-				dataFile.worker([{fn: follows, data: {ident: ident, token: token, key: "follows"}}, {fn: followedBy, data: {ident: ident, token: token, key: "followedBy"}}], function(results){
-					dataFile.compare(results.follows, results.followedBy);
-					interface.mismatch(dataFile.compare(results.follows, results.followedBy), '.nfb');
-					interface.mismatch(dataFile.compare(results.followedBy, results.follows), '.nf');
-				});
+				console.log('follows: ', data.follows);
+				console.log('followers: ', data.followers);
 			}
 			else{
 				interface.noUser();
@@ -126,7 +104,12 @@ var main = function(){
 		for (var x = 0; x < arr.length; x++){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
-			$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/">' + user + '</a>'));
+			if (arr[x].reciprocate === true){
+				$(div).append($('<div class="person">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			}
+			else{
+				$(div).prepend($('<div class="personMM">').html('<img src=' + pic + '><br><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			}
 		}
 	};
 
@@ -148,42 +131,3 @@ $(document).ready(main);
 
 
 
-
-
-
-
-
-// // HTTP Codes:
-// // 	GET: retrieves information from the specified source (you just saw this one!)
-// // 	POST: sends new information to the specified source.
-// // 	PUT: updates existing information of the specified source.
-// // 	DELETE: removes existing information from the specified source.
-
-// var http = require('http');
-// var args = process.argv;
-// var url = args[2];
-
-// // console.log(url);
-
-// function works(site){
-// 	http.get(site, function(res){
-// 		res.setEncoding('utf8');
-// 		res.on('data', function(){
-// 			console.log('erger!!!!');
-// 		});
-// 		// res.on('data', console.log('erger!!!!')); DOES NOT WORK
-// 		}).on('error', console.error);
-// };
-
-// if(url.indexOf('http') < 0){
-// 	url = 'http://' + url;
-// 	works(url);
-// }
-// else {
-// 	works(url);
-// };
-
-// // http.get(url, function(res){
-// // 	res.setEncoding('utf8');
-// // 	res.on('data', console.log);
-// // 	}).on('error', console.error);
