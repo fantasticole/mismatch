@@ -13,6 +13,7 @@ var clientId = process.env.INSTAGRAM_CLIENT_ID;
 var clientSecret = process.env.INSTAGRAM_CLIENT_SECRET;
 var sessionSecret = process.env.INSTAGRAM_SESSION_SECRET;
 var encryptionKey = process.env.INSTAGRAM_ENCRYPTION_KEY;
+var port = process.env.PORT;
 
 function encrypt(text){
   var cipher = crypto.createCipher('aes-256-cbc', encryptionKey)
@@ -171,7 +172,7 @@ app.post('/logout', function(req, res){
 	res.redirect('/');
 })
 
-var server = app.listen(3000, function () {
+var server = app.listen(port, function () {
 
 	var host = server.address().address;
 	var port = server.address().port;
