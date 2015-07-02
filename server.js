@@ -114,6 +114,10 @@ function authorizeWithInstagram(userCode, cb){
 
 app.use(express.static('public'));
 
+app.get('/request_authorization', function(req, res){
+	res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + url + '/authorize&response_type=code');
+});
+
 app.get('/authorize', function (req, res) {
 	var userCode = req.query.code;
 	authorizeWithInstagram(userCode, function(err, token, userData){
