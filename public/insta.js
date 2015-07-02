@@ -29,8 +29,10 @@ var main = function(){
 		}
 	});
 
-	$('.compare').click(function(){
-		interface.showComparison();
+	$('input').keyup(function(event){
+	 	if(event.keyCode == 13){
+	    	$('.search').click();
+		}
 	});
 
 	$('.uf').click(function(){
@@ -45,9 +47,7 @@ var main = function(){
 		if ($(window).width() > 800){
 			$('.options').hide();
 			if (handle.length > 0){
-				$('.container').show();
-				$('.right').show();
-				$('.left').show();
+				interface.resize();
 			}
 		}
 		else {
@@ -58,25 +58,8 @@ var main = function(){
 		}
 	});
 
-	function getUsernames(loc, arr, cb){
-		people(loc).done(function(data){
-			arr = arr.concat(data.data);
-			if (data.pagination.next_url){
-				var newLoc = data.pagination.next_url;
-				getUsernames(newLoc, arr, cb)
-			}
-			else {
-				var names = arr.map(function(they){
-					return they.username;
-				});
-				cb(names);
-			};
-		});
-	}
-
 	function searchUser(name){
 		people('/user/' + name).done(function(data){
-			console.log('We made it!', data);
 			if (data){
 				var pic = data.profile_picture;
 				var name = data.full_name;
@@ -89,9 +72,6 @@ var main = function(){
 				display(data.follows, '.following');
 
 				display(data.followers, '.followers');
-
-				console.log('follows: ', data.follows);
-				console.log('followers: ', data.followers);
 			}
 			else{
 				interface.noUser();

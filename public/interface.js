@@ -38,8 +38,8 @@
 			$('.visitor').show();
 			$('.visitor').css('background-image', 'url(' + pic + ')');
 			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>');
-			$('.userFollows').html(user + ' Follows:');
-			$('.userFollowing').html(user + '\'s Followers:');
+			$('.userFollows').html(user + '<br>follows:');
+			$('.userFollowing').html(user + '\'s<br>followers:');
 			if ($(window).width() < 800){
 				$('.options').show();
 				$('.ufb').removeAttr('style');
