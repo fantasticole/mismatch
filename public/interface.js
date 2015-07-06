@@ -1,9 +1,16 @@
 ;(function(){
+	var backgrounds = ['url(loading/britney.gif)','url(loading/burger.gif)','url(loading/carlton.gif)','url(loading/cheez.gif)','url(loading/drop.gif)','url(loading/kanye.gif)','url(loading/lisa.gif)','url(loading/mrt.gif)','url(loading/nintendo.gif)','url(loading/pharrell.gif)','url(loading/stitch.gif)','url(loading/dino.gif)','url(loading/pika.gif)']
+
+	function newBackground(){
+		var current = Math.floor(Math.random()*backgrounds.length);
+		return current;
+	};
 	var interface = {
 		pageLoading: function(){
+			$('.loadImg').css('background-image', backgrounds[newBackground()]);
 			$('.instruct').hide();
 			$('.input').hide();
-			$('.visitor').hide();
+			$('.visitor').hide();	
 			$('.container').hide();
 			$('.options').hide();
 		},
@@ -34,6 +41,7 @@
 			$('.left').hide();
 		},
 		newSearch: function(){
+			$('.loadImg').css('background-image', backgrounds[newBackground()]);
 			$('.load').show();
 			$('.instruct').hide();
 			$('.input').hide();

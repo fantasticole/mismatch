@@ -58,11 +58,12 @@ h2{
 	}
 
 	.loadImg{
-		background-image: url('loading.gif');
+		display: inline-block;
 		background-position: center;
+		background-size: 100% 100%;
 		height: 200px;
 		margin: auto;
-		width: 60%;
+		width: 22%;
 	}
 
 	.input{
