@@ -3,12 +3,10 @@
 
 var main = function(){
 	var empty = [];
-	$('.visitor').hide();
-	$('.container').hide();
-	$('.options').hide();
+	interface.pageLoading();
 	var here = window.location.href;
 	var handle = here.slice(here.indexOf('=')+1);
-	$(searchUser(handle))
+	$(searchUser(handle));
 
 
 	if (here.indexOf('app') > 0 && handle === undefined){
@@ -17,7 +15,6 @@ var main = function(){
 
 	$('.search').click(function(){
 		interface.newSearch();
-		$('.instruct').hide();
 		handle = $('input[name=handle]').val();
 		if (handle.length > 0){
 			searchUser(handle);

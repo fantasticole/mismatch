@@ -46,6 +46,25 @@ h2{
 		color: #000000;
 	}
 
+	.load{
+		width: 100%;
+		z-index: 2;
+	}
+
+	h3{
+		font-size: 2em;
+		margin-bottom: 15px;
+		margin-top: 0;
+	}
+
+	.loadImg{
+		background-image: url('loading.gif');
+		background-position: center;
+		height: 200px;
+		margin: auto;
+		width: 60%;
+	}
+
 	.input{
 		display: flex;
 		margin: auto;

@@ -1,5 +1,12 @@
 ;(function(){
 	var interface = {
+		pageLoading: function(){
+			$('.instruct').hide();
+			$('.input').hide();
+			$('.visitor').hide();
+			$('.container').hide();
+			$('.options').hide();
+		},
 		logIn: function(){
 		$('.instruct').hide();
 		$('.input').hide();
@@ -27,6 +34,10 @@
 			$('.left').hide();
 		},
 		newSearch: function(){
+			$('.load').show();
+			$('.instruct').hide();
+			$('.input').hide();
+			$('.visitor').hide();
 			$('.visitor').html('');
 			$('.following').html('');
 			$('.followers').html('');
@@ -35,6 +46,9 @@
 			$('.visitor').css('background-image', 'none');
 		},
 		displayUser: function(pic, name, user){
+			$('.load').hide();
+			$('.instruct').show();
+			$('.input').show();
 			$('.visitor').show();
 			$('.visitor').css('background-image', 'url(' + pic + ')');
 			$('.visitor').append('<div class="overlay"><p class="real">' + name + '</p><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>');
