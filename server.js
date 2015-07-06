@@ -163,9 +163,11 @@ app.get('/user/:name', function (req, res) {
 	});
 });
 
-app.post('/logout', function(req, res){
+app.get('/logout', function(req, res){
+	console.log('req: ', req.cookies.mismatch);
 	res.clearCookie('mismatch');
 	res.redirect('/');
+	console.log('new req: ', req.cookies.mismatch);
 })
 
 var server = app.listen(port, function () {

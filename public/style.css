@@ -15,6 +15,14 @@ h1{
 	z-index: 10;
 }
 
+.logout{
+	position: absolute;
+	right: 7%;
+	top: 45px;
+	height: 25px;
+	width: 150px;
+}
+
 h2{
 	color: #00FCDB;
 	font-weight: normal;
@@ -52,8 +60,10 @@ h2{
 	}
 
 	h3{
+		position: relative;
+		top: 20px;
 		font-size: 2em;
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 		margin-top: 0;
 	}
 
@@ -115,15 +125,15 @@ h2{
 
 
 	.visitor{
-		border-radius: 0 30px;
+		border-radius: 0 30px 0 0;
 		background-color: rgba(250, 250, 250, 0.8);
-		width: 80%;
+		width: 100%;
 		height: 150px;
-		margin: auto;
+		margin-bottom: 2%;
 	}
 
 		.overlay{
-			border-radius: 0 30px;
+			border-radius: 0 30px 0 0;
 			background-color: rgba(250, 250, 250, 0.5);
 			height: 100%;
 		}
@@ -164,88 +174,73 @@ h2{
 
 	.container{
 		height: 1200px;
+		margin: auto;
+		border-radius: 0 30px;
+		width: 90%;
+		background-color: rgba(250, 250, 250, 0.8);
 	}
 
-		.left{
-			width: 48.5%;
-			position: relative;
-			float: left;
-			top: 2%;
-			height: 1150px;
+		.friends{
+			overflow-y: auto;
+			width: 95%;
+			height: 84%;
+			margin: auto;
 			border-radius: 0 30px;
-			background-color: rgba(250, 250, 250, 0.8);
 		}
 
-		.right{
-			width: 48.5%;
-			position: relative;
-			float: right;
-			top: 2%;
-			height: 1150px;
-			border-radius: 0 30px;
-			background-color: rgba(250, 250, 250, 0.8);
-		}
-
-			.following, .followers{
-				height: 90%;
-				border-radius: 0 0 0 30px;
-				overflow-y: auto;
-				position: relative;
+			.person, .personMM{
+				padding: 5px;
+				height: 100px;
+				overflow-x: auto;
+				white-space: nowrap;
 			}
 
-				.person, .personMM{
-					padding: 5px;
-					height: 100px;
-					overflow-x: auto;
-					white-space: nowrap;
-				}
+			.personMM{
+				background-color: #rgba(0, 0, 0, 0.5);
+			}
 
-				.personMM{
-					background-color: #rgba(0, 0, 0, 0.5);
-				}
+			.person:hover{
+				background-color: #FFFFFF;
+			}
 
-				.person:hover{
-					background-color: #FFFFFF;
-				}
+			.personMM:hover{
+				background-color: #000000;
+			}
 
-				.personMM:hover{
-					background-color: #000000;
-				}
+			.person img, .personMM img{
+				width: 100px;
+				height: 100%;
+				float: left;
+				display: inline-block;
+				margin-right: 5px;
+			}
 
-				.person img, .personMM img{
-					width: 100px;
-					height: 100%;
-					float: left;
-					display: inline-block;
-					margin-right: 5px;
-				}
+			.person:hover img, .personMM:hover img{
+				box-shadow: 3px 3px #00FCDB;
+			}
 
-				.person:hover img, .personMM:hover img{
-					box-shadow: 3px 3px #00FCDB;
-				}
+			.person a{
+				padding-top: 35px;
+				text-decoration: none;
+				color: #000000;
+				margin: auto;
+				font-size: 1.5em;
+				display: inline-block;
+			}
 
-				.person a{
-					padding-top: 35px;
-					text-decoration: none;
-					color: #000000;
-					margin: auto;
-					font-size: 1.5em;
-					display: inline-block;
-				}
+			.personMM a{
+				padding-top: 35px;
+				text-decoration: none;
+				color: #FFFFFF;
+				margin: auto;
+				font-size: 1.5em;
+				display: inline-block;
+			}
 
-				.personMM a{
-					padding-top: 35px;
-					text-decoration: none;
-					color: #FFFFFF;
-					margin: auto;
-					font-size: 1.5em;
-					display: inline-block;
-				}
-
-				.person:hover a, .personMM:hover a{
-					text-decoration: none;
-					color: #00FCDB;
-				}
+			.person:hover a, .personMM:hover a{
+				text-decoration: none;
+				color: #00FCDB;
+			}
 
 @media (max-width: 800px){
 	html{
@@ -257,6 +252,23 @@ h2{
 		top: 0;
 		margin: 15px;
 		padding-bottom: 20px;
+	}
+
+	.logout{
+		position: absolute;
+		top: 25px;
+		right: 15px;
+		z-index: 2;
+		box-shadow: 5px 5px #FFFFFF;
+		border-bottom: none;
+		border: 1px solid black;
+		border-radius: 0 10px;
+	}
+
+	.logout:hover{
+		box-shadow: 5px 5px #000000;
+		border-bottom: none;
+		border: 1px solid black;
 	}
 
 	#content{
@@ -272,6 +284,10 @@ h2{
 
 	.auth a{
 		font-size: 2em;
+	}
+
+	.loadImg{
+		width: 28%;
 	}
 
 	.input{
@@ -337,7 +353,6 @@ h2{
 		border-radius: 0;
 		position: relative;
 		left: 0;
-		margin-top: 10px;
 	}
 
 		.overlay{
@@ -349,39 +364,9 @@ h2{
 			font-size: 2.5em;
 		}
 
-	.options{
-		visibility: visible;
-		width: 100%;
-		height: 35px;
-		margin: auto;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-
-		.options button{
-			text-transform: uppercase;
-			text-align: center;
-			margin: 0;
-			border-radius: 0;
-			border-bottom: none;
-			display: inline-block;
-			height: 35px;
-		}
-		
-		.uf{
-			width: 50%;
-			position: absolute;
-			left: 0;
-		}
-		
-		.ufb{
-			width: 50%;
-			position: absolute;
-			right: 0;
-		}
-
 	.container{
 		position: relative;
+		border-radius: 0;
 		left: 0;
 		top: 0;
 		bottom: 0;
@@ -389,58 +374,33 @@ h2{
 		background-color: rgba(250, 250, 250, 0.8);
 	}
 
-		.left{
-			position: absolute;
-			bottom: 0;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: inherit;
-			background-color: transparent;
+		.person, .personMM{
+			height: 80px;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 
-		.right{
-			position: absolute;
-			bottom: 0;
-			top: 0;
-			right: 0;
-			width: 100%;
-			height: inherit;
-			background-color: transparent;
+		.person img, .personMM img{
+			height: 100%;
+			width: auto;
+			min-width: 80px;
 		}
 
-			.following, .followers{
-				top: 30px;
-				left: 2.5%;
-				right: 2.5%;
-				width: 95%;
-				border-radius: 0 30px;
-				background-color: rgba(0, 0, 0, 0.2);
-				padding-bottom: 0;
-			}
-
-			.person, .personMM{
-				height: 80px;
-				white-space: nowrap;
-				overflow: hidden;
-			}
-
-			.person img, .personMM img{
-				height: 100%;
-				width: auto;
-				min-width: 80px;
-			}
-
-			.person a, .personMM a{
-				overflow-x: auto;
-				top: 0;
-				margin: auto;
-				font-size: 1.5em;
-			}
+		.person a, .personMM a{
+			overflow-x: auto;
+			top: 0;
+			margin: auto;
+			font-size: 1.5em;
+		}
 }
 
 
 @media (max-width: 500px){
+	.container{
+		position: relative;
+		top: -40px;
+	}
+
 	.input{
 		overflow: hidden;
 		white-space: nowrap;

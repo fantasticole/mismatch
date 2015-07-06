@@ -26,34 +26,32 @@ var main = function(){
 		}
 	});
 
+	$('.logout').click(function(){
+		people('/logout');
+	})
+
 	$('input').keyup(function(event){
 	 	if(event.keyCode == 13){
 	    	$('.search').click();
 		}
 	});
 
-	$('.uf').click(function(){
-		interface.userFollows();
-	});
+	function sortByUsername(a, b){
+		if (a.username < b.username)
+			return -1;
+		if (a.username > b.username)
+			return 1;
+		return 0;
+	}
 
-	$('.ufb').click(function(){
-		interface.userFollowedBy();
-	});
-
-	$(window).resize(function(){
-		if ($(window).width() > 800){
-			$('.options').hide();
-			if (handle.length > 0){
-				interface.resize();
+	function oneOrderedArray(arr, arrTwo){
+		for (var x = 0; x < arrTwo.length; x++){
+			if (arrTwo[x].reciprocate === false){
+				arr.push(arrTwo[x]);
 			}
 		}
-		else {
-			$('.container').hide();
-			if (handle.length > 0){
-				$('.options').show();
-			}
-		}
-	});
+		return arr.sort(sortByUsername);
+	};
 
 	function searchUser(name){
 		people('/user/' + name).done(function(data){
@@ -66,9 +64,10 @@ var main = function(){
 
 				dataFile.setReciprocation(data.follows, data.followers);
 
-				display(data.follows, '.following');
+				var all = oneOrderedArray(data.follows, data.followers);
 
-				display(data.followers, '.followers');
+				console.log(all);
+				display(all, '.friends');
 			}
 			else{
 				interface.noUser();
