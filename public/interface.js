@@ -48,6 +48,15 @@
 			$('.container').hide();
 			$('.visitor').css('background-image', 'none');
 			$('.visitor').html('<p class="notReal">That user does not seem to exist.</p>');
+		},
+		reciprocal: function(div, pic, user){
+			$(div).append($('<div class="user">').html('<div class="followedBy"><div class="following"><hr/></div><hr/></div><div class="person"><img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>'));
+		},
+		youFollow: function(div, pic, user){
+			$(div).append($('<div class="user">').html('<div class="followedBy" style="visibility:hidden"><div class="following" style="visibility:visible"><hr/></div></div><div class="personMM"><img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>'));
+		},
+		followsYou: function(div, pic, user){
+			$(div).append($('<div class="user">').html('<div class="followedBy"><div class="notFollowing"></div><hr/></div><div class="personMM"><img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a></div>'));
 		}
 	};
 	window.interface = interface;

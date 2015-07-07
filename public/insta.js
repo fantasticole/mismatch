@@ -26,9 +26,9 @@ var main = function(){
 		}
 	});
 
-	$('.logout').click(function(){
-		people('/logout');
-	})
+	// $('.logout').click(function(){
+	// 	people('/logout');
+	// })
 
 	$('input').keyup(function(event){
 	 	if(event.keyCode == 13){
@@ -45,12 +45,26 @@ var main = function(){
 	}
 
 	function oneOrderedArray(arr, arrTwo){
+		// arr = following, arrTwo = followedBy
+		var newArr = [];
 		for (var x = 0; x < arrTwo.length; x++){
 			if (arrTwo[x].reciprocate === false){
-				arr.push(arrTwo[x]);
+				arrTwo[x]['followedBy'] = true;
+				newArr.push(arrTwo[x]);
+			}
+			else {
+				arrTwo[x]['following'] = true;
+				arrTwo[x]['followedBy'] = true;
+				newArr.push(arrTwo[x]);
 			}
 		}
-		return arr.sort(sortByUsername);
+		for (var x = 0; x < arr.length; x++){
+			if (arr[x].reciprocate === false){
+				arr[x]['following'] = true;
+				newArr.push(arr[x]);
+			}
+		}
+		return newArr.sort(sortByUsername);
 	};
 
 	function searchUser(name){
@@ -65,8 +79,6 @@ var main = function(){
 				dataFile.setReciprocation(data.follows, data.followers);
 
 				var all = oneOrderedArray(data.follows, data.followers);
-
-				console.log(all);
 				display(all, '.friends');
 			}
 			else{
@@ -81,12 +93,17 @@ var main = function(){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
 			if (arr[x].reciprocate === true){
-				$(div).append($('<div class="person">').html('<img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+				interface.reciprocal(div, pic, user);
 			}
-			else{
-				$(div).prepend($('<div class="personMM">').html('<img src=' + pic + '><a href="https://instagram.com/'+ user +'/" target="_blank">' + user + '</a>'));
+			if (arr[x].reciprocate === false && arr[x].following === true){
+				interface.youFollow(div, pic, user);
 			}
+			if (arr[x].reciprocate === false && arr[x].followedBy === true){
+				interface.followsYou(div, pic, user);
+			};
 		}
+		$('.user:last-child').append('<div class="block"><div class="blockTop"></div></div>');
+		$('.user:last-child .followedBy').append('<div class="blockTwo"><div class="blockTwoTop"></div></div>');
 	};
 
 	function people(loc){
