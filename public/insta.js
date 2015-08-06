@@ -77,10 +77,9 @@ var main = function(){
 				interface.displayUser(pic, name, user);
 
 				dataFile.setReciprocation(data.follows, data.followers);
-				console.log(data.follows)
 
 				var all = oneOrderedArray(data.follows, data.followers);
-				console.log(all)
+				console.log('all: ', all)
 				display(all, '.friends');
 			}
 			else{
