@@ -33,6 +33,7 @@
 			$('.visitor').html('');
 			$('.container').hide();
 			$('.visitor').css('background-image', 'none');
+			$('.friends').html('');
 		},
 		displayUser: function(pic, name, user){
 			$('.load').hide();

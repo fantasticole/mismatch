@@ -79,7 +79,6 @@ var main = function(){
 				dataFile.setReciprocation(data.follows, data.followers);
 
 				var all = oneOrderedArray(data.follows, data.followers);
-				console.log('all: ', all)
 				display(all, '.friends');
 			}
 			else{
@@ -90,6 +89,7 @@ var main = function(){
 
 
 	function display(arr, div){
+		console.log('all: ', arr)
 		for (var x = 0; x < arr.length; x++){
 			var pic = arr[x].profile_picture;
 			var user = arr[x].username;
